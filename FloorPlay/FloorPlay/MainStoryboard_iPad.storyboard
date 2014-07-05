@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="5">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -523,6 +523,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="qpK-8P-Yxb"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="250"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHw-kk-0HH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -552,6 +553,7 @@
                         </connections>
                     </tableView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="300"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRu-c0-zSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -563,6 +565,7 @@
                 <navigationController definesPresentationContext="YES" id="kKe-y4-AF1" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Iqo-Ih-Y2V"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="768" height="1024"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vf5-qg-kgN">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -605,43 +608,55 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="sampleimg_enhanced.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1EG-Ta-Ksf">
-                                <rect key="frame" x="0.0" y="0.0" width="891" height="596"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <color key="backgroundColor" red="0.2576029854233266" green="1" blue="0.14545283648107366" alpha="0.37" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <imageView contentMode="TopLeft" fixedFrame="YES" image="controlpoint.png" highlightedImage="controlpoint_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Jh-jH-ga6">
-                                <rect key="frame" x="38" y="660" width="46" height="46"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f0M-XZ-sRY">
+                                <rect key="frame" x="-1024" y="-768" width="3072" height="2304"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="sampleimg_enhanced.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1EG-Ta-Ksf">
+                                        <rect key="frame" x="0.0" y="0.0" width="891" height="596"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="backgroundColor" red="0.2576029854233266" green="1" blue="0.14545283648107366" alpha="0.37" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <imageView contentMode="TopLeft" fixedFrame="YES" image="controlpoint.png" highlightedImage="controlpoint_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Jh-jH-ga6">
+                                        <rect key="frame" x="1082" y="1448" width="46" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="f0K-7W-YaX" appends="YES" id="L49-u3-NdC"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView contentMode="TopLeft" fixedFrame="YES" image="controlpoint.png" highlightedImage="controlpoint_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="oPu-CA-KSq">
+                                        <rect key="frame" x="1958" y="871" width="46" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="86X-N7-4Hz" appends="YES" id="XBc-bL-IIW"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView contentMode="TopLeft" fixedFrame="YES" image="controlpoint.png" highlightedImage="controlpoint_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="axj-7j-zkC">
+                                        <rect key="frame" x="1958" y="1448" width="46" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="uWo-ZP-pyG" appends="YES" id="Kdm-8E-y4v"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView contentMode="TopLeft" fixedFrame="YES" image="controlpoint.png" highlightedImage="controlpoint_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Vx-fg-mRP">
+                                        <rect key="frame" x="1082" y="871" width="46" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="pSi-SI-J4Z" appends="YES" id="RpV-pQ-cZS"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="f0K-7W-YaX" appends="YES" id="L49-u3-NdC"/>
+                                    <outletCollection property="gestureRecognizers" destination="uti-Xa-7Wn" appends="YES" id="SKo-yS-4yM"/>
                                 </connections>
-                            </imageView>
-                            <imageView contentMode="TopLeft" fixedFrame="YES" image="controlpoint.png" highlightedImage="controlpoint_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="oPu-CA-KSq">
-                                <rect key="frame" x="914" y="83" width="46" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="86X-N7-4Hz" appends="YES" id="XBc-bL-IIW"/>
-                                </connections>
-                            </imageView>
-                            <imageView contentMode="TopLeft" fixedFrame="YES" image="controlpoint.png" highlightedImage="controlpoint_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="axj-7j-zkC">
-                                <rect key="frame" x="914" y="660" width="46" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="uWo-ZP-pyG" appends="YES" id="Kdm-8E-y4v"/>
-                                </connections>
-                            </imageView>
-                            <imageView contentMode="TopLeft" fixedFrame="YES" image="controlpoint.png" highlightedImage="controlpoint_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Vx-fg-mRP">
-                                <rect key="frame" x="38" y="83" width="46" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="pSi-SI-J4Z" appends="YES" id="RpV-pQ-cZS"/>
-                                </connections>
-                            </imageView>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPJ-Ao-E4V">
                                 <rect key="frame" x="250" y="708" width="545" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -732,6 +747,7 @@
                         <outlet property="btnChangeBG" destination="do7-tq-7IA" id="hav-Ik-cfD"/>
                         <outlet property="btnChangeCarpet" destination="Jmh-Pq-UDf" id="buD-yC-B0j"/>
                         <outlet property="imageView" destination="1EG-Ta-Ksf" id="2hy-UF-sBD"/>
+                        <outlet property="movableView" destination="f0M-XZ-sRY" id="VUv-XU-d72"/>
                         <outlet property="topLeftControl" destination="5Vx-fg-mRP" id="Kyb-IH-VxH"/>
                         <outlet property="topRightControl" destination="oPu-CA-KSq" id="7Jx-a5-yAV"/>
                         <outlet property="view" destination="9gH-3T-lXU" id="pKK-lk-08Y"/>
@@ -763,6 +779,11 @@
                         <action selector="handleSingletap:" destination="L4W-ZN-Swp" id="RAT-3j-CnK"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="uti-Xa-7Wn">
+                    <connections>
+                        <action selector="imageMoved:" destination="L4W-ZN-Swp" id="YZX-Vu-72i"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2650" y="74"/>
         </scene>
@@ -804,6 +825,7 @@
                     </collectionView>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="450"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7m-YO-jM2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -847,6 +869,7 @@
                     </collectionView>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="450"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdl-Y7-PFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

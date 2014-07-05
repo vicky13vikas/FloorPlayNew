@@ -31,7 +31,7 @@
 @property (strong, nonatomic) UIPopoverController  *popOver;
 @property (weak, nonatomic) IBOutlet UIButton *btnChangeCarpet;
 @property (weak, nonatomic) IBOutlet UIButton *btnChangeBG;
-
+@property (weak, nonatomic) IBOutlet UIView *movableView;
 
 @end
 
@@ -41,7 +41,7 @@
 {
     [super viewDidLoad];
     isContolsHidden = NO;
-    //    [self createAndApplyQuad];
+    [self createAndApplyQuad];
 
 }
 
@@ -75,13 +75,47 @@
     UIImageView *view = (UIImageView *)[recognizer view];
     
     CGPoint translation = [recognizer translationInView:self.view];
-    view.centerX += translation.x;
-    view.centerY += translation.y;
+    if (view.frame.origin.x <= 0)
+    {
+        view.centerX = 100;
+    }
+    if (view.frame.origin.x > _movableView.frame.size.width)
+    {
+        view.centerX = _movableView.frame.size.width - 100;
+    }
+    else
+    {
+        view.centerX += translation.x;
+    }
+    
+    if(view.frame.origin.y <= 0)
+    {
+        view.centerY = 100;
+    }
+    if (view.frame.origin.y > _movableView.frame.size.height)
+    {
+        view.centerY = _movableView.frame.size.height - 100;
+    }
+    else
+    {
+        view.centerY += translation.y;
+    }
+    
     [recognizer setTranslation:CGPointZero inView:self.view];
     
     view.highlighted = recognizer.state == UIGestureRecognizerStateChanged;
     
     [self createAndApplyQuad];
+}
+
+- (IBAction)imageMoved:(UIPanGestureRecognizer *)recognizer
+{
+    UIImageView *view = (UIImageView *)[recognizer view];
+    
+    CGPoint translation = [recognizer translationInView:self.view];
+    view.centerX += translation.x;
+    view.centerY += translation.y;
+    [recognizer setTranslation:CGPointZero inView:self.view];
 }
 
 -(BOOL)shouldAutorotate
@@ -159,14 +193,16 @@
 
 -(void)resetImage
 {
-    CGRect topLeftFrame = CGRectMake(38, 83, 46, 46);
-    CGRect topRightFrame = CGRectMake(914, 83, 46, 46) ;
-    CGRect bottomLeftFrame = CGRectMake(38, 660, 46, 46) ;
-    CGRect bottomRightFrame = CGRectMake(914, 660, 46, 46) ;
+    CGRect topLeftFrame = CGRectMake(38+1024, 83+768, 46, 46);
+    CGRect topRightFrame = CGRectMake(914+1024, 83+768, 46, 46) ;
+    CGRect bottomLeftFrame = CGRectMake(38+1024, 660+768, 46, 46) ;
+    CGRect bottomRightFrame = CGRectMake(914+1024, 660+768, 46, 46) ;
     _topLeftControl.frame = topLeftFrame;
     _topRightControl.frame = topRightFrame;
     _bottomLeftControl.frame = bottomLeftFrame;
     _bottomRightControl.frame = bottomRightFrame;
+    
+    _movableView.frame = CGRectMake(-1024, -768, CGRectGetWidth(_movableView.frame), CGRectGetHeight(_movableView.frame));
     
     [self createAndApplyQuad];
 }

@@ -13,6 +13,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "ImagesDataParser.h"
 #import "ImagesDataSource.h"
+#import "FPAFNetworking.h"
 
 @interface FirstViewController ()
 
@@ -49,8 +50,8 @@
     [super viewDidAppear:animated];
     if(![[[FloorPlayServices singleton] preferences] objectForKey:IS_FIRST_TIME_LAUNCH])
     {
-//        [self downloadImagesListFirstTime];
-//        [self downloadBackgroundImages];
+        [self downloadImagesListFirstTime];
+        [self downloadBackgroundImages];
     }
     else
     {
@@ -80,71 +81,63 @@
 
 - (IBAction)updateTapped:(id)sender
 {
-//    [self downloadImagesListFirstTime];
-//    [self downloadAllImagesBG];
+    [self downloadImagesListFirstTime];
+    [self downloadBackgroundImages];
 }
 
 
-/*
+
 -(void)downloadImagesListFirstTime
 {
-    NSString *url = [NSString stringWithFormat:@"%@getImage.php",SERVER_URL];
+    NSString *url = [NSString stringWithFormat:@"api/getImage.php"];
     
-    
-    
-    AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:url]];
-    
-    [Client setParameterEncoding:AFJSONParameterEncoding];
-    [Client postPath:@"users/login.json" parameters:nil
-             success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         [self saveJsonData:responseObject];
-         [self loadDataFromSavedJson];
-         [self downloadAllImages];
-         
-     }
-             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                 [self showAlertWithMessage:[error localizedDescription] andTitle:@"Error"];
-                 [self hideLoadingScreen];
-             }];
+    FPAFNetworking * client = [FPAFNetworking client];    
+    [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
+    {
+        [self saveJsonData:responseObject];
+        [self loadDataFromSavedJson];
+        [self downloadInventoryImages];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error)
+    {
+        [self showAlertWithMessage:[error localizedDescription] andTitle:@"Error"];
+        [self hideLoadingScreen];
+
+    }];
     
     [self showLoadingScreenWithMessage:@"Downloading..."];
- 
 }
+
 
 -(void)downloadBackgroundImages
 {
-    NSString *url = [NSString stringWithFormat:@"%@getBackgroundImage.php",SERVER_URL];
+    NSString *url = [NSString stringWithFormat:@"getBackgroundImage.php"];
     
-    
-    
-    AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:url]];
-    
-    [Client setParameterEncoding:AFJSONParameterEncoding];
-    [Client postPath:@"users/login.json" parameters:nil
-             success:^(AFHTTPRequestOperation *operation, id responseObject)
+    FPAFNetworking * client = [FPAFNetworking client];
+    [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
      {
          [self saveBackgroundJsonData:responseObject];
          [self loadDataFromSavedJsonBGList];
          [self downloadAllImagesBG];
          
-     }
-             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                 [self showAlertWithMessage:[error localizedDescription] andTitle:@"Error"];
-                 [self hideLoadingScreen];
-             }];
+     } failure:^(NSURLSessionDataTask *task, NSError *error)
+     {
+         [self showAlertWithMessage:[error localizedDescription] andTitle:@"Error"];
+         [self hideLoadingScreen];
+     }];
     
     [self showLoadingScreenWithMessage:@"Downloading..."];
+
     
 }
-*/
+
 -(void)saveJsonData:(NSData*)data
 {
     NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     documentDirPath = [documentDirPath stringByAppendingString:@"/"];
     documentDirPath = [documentDirPath stringByAppendingString:SAVED_JSON_FILE];
     
-    [[NSFileManager defaultManager] createFileAtPath:documentDirPath contents:data attributes:nil];
+    [data writeToFile:documentDirPath atomically:YES];
     
     [[[FloorPlayServices singleton] preferences] setObject:@"YES" forKey:IS_FIRST_TIME_LAUNCH];
 }
@@ -186,81 +179,55 @@
 }
 
 
--(NSArray*)getListOfImagesNotDownloaded
+-(void)downloadInventoryImages
 {
-    NSMutableArray *imageNames = [[NSMutableArray alloc] init];
     for (ImageData *image in self.imagesList)
     {
         for (NSString *imageName in image.imagesList)
         {
             if(imageName.length > 0)
-                [imageNames addObject:imageName];
+            {
+                [self downloadImageNamed:imageName];
+            }
         }
     }
-    
-    return  imageNames;
 }
 
--(void)downloadAllImages
+-(void)downloadImageNamed:(NSString*)imageName
 {
-    NSArray *imagesNameList = [self getListOfImagesNotDownloaded];
     
+    self.processCount = 0;
+    
+        NSString *url = [[NSString stringWithFormat:@"data/images/%@", imageName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        FPAFNetworking *client = [FPAFNetworking imageDownloadClient];
+        
+        [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
+        {
+            [self saveImage:responseObject forURL:task.response.URL];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        
+        [self showLoadingScreenWithMessage:@"Downloading Images..."];
+}
+
+- (void)saveImage:(UIImage*)image forURL:(NSURL*)url
+{
     NSArray *dirPathSearch = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDirPath = [dirPathSearch objectAtIndex:0];
     NSString *dirPath = [docDirPath stringByAppendingPathComponent:@"Images/"];
-    
-    // if the sub directory does not exist, create it
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    
     if (![fileManager fileExistsAtPath:dirPath])
     {
-        NSLog(@"%@: does not exists...will attempt to create", dirPath);
-        
         if (![fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error])
             NSLog(@"errormsg:%@", [error description]);
     }
- 
-    self.processCount = 0;
     
-    for (int i = 0; i < imagesNameList.count; i++)
-    {
-        NSString *urlPath = [[NSString stringWithFormat:@"%@%@", SERVER_URL_FOR_FILE, [imagesNameList objectAtIndex:i]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        //        urlPath = [urlPath stringByReplacingOccurrencesOfString:@"jpeg" withString:@"jpg"];
-        NSString *filePath = [dirPath stringByAppendingPathComponent:[imagesNameList objectAtIndex:i]];
-        
-        // download the song file and save them directly to docdir
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlPath]];
-        
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        
-        operation.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             self.processCount++;
-             NSLog(@"File :%d Success!", _processCount);
-             
-             // all the files have been saved, now update the playlist
-             if (self.processCount == [imagesNameList count])
-             {
-                 [self hideLoadingScreen];
-                 [[ImagesDataSource singleton] update];
-             }
-             
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             self.processCount++;
-             NSLog(@"ERROR ERROR ERROR:%@ - could not save to path:%@", error, filePath);
-             if (self.processCount == [imagesNameList count])
-             {
-                 [self hideLoadingScreen];
-             }
-         } ];
-        [self showLoadingScreenWithMessage:@"Downloading Images..."];
-        [operation start];
-        
-    }
     
+    NSString *filePath = [dirPath stringByAppendingPathComponent:[url lastPathComponent]];
+    [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
 }
 
 -(void)downloadAllImagesBG

@@ -10,7 +10,7 @@
 #define IS_FIRST_TIME_LAUNCH @"isAppLauchedFirstTime"
 
 //#define SERVER_URL @"http://sysbiam.com//ImageMSys/api/"
-#define SERVER_URL @"http://floorplayrugs.com/ImageSrc/api/"
+#define SERVER_URL @"http://floorplayrugs.com/ImageSrc/"
 
 //#define SERVER_URL_FOR_FILE @"http://www.sysbiam.com//ImageMSys/images/"
 
@@ -24,8 +24,8 @@
 
 #define RELATIVE_IMAGES_COUNT 4
 
-#define SAVED_JSON_FILE @"JsonData.txt"
-#define SAVED_BG_IMAGES_JSON_FILE @"BGImagesJsonData.txt"
+#define SAVED_JSON_FILE @"JsonData.plist"
+#define SAVED_BG_IMAGES_JSON_FILE @"BGImagesJsonData.plist"
 
 #define kCategories @[@"By Color", @"By Size", @"By Pattern", @"By Material", @"By Price"]
 

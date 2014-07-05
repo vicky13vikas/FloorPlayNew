@@ -59,6 +59,7 @@
 		099FBA991967FB5E002D3688 /* Topbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA861967FB5E002D3688 /* Topbar.png */; };
 		099FBA9A1967FB5E002D3688 /* btn_Signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA871967FB5E002D3688 /* btn_Signin.png */; };
 		099FBA9B1967FB5E002D3688 /* logo.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA881967FB5E002D3688 /* logo.bmp */; };
+		099FBA9F19680919002D3688 /* FPAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 099FBA9E19680919002D3688 /* FPAFNetworking.m */; };
 		613D0C985886468185D016EB /* libPods-FloorPlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 107E4B76031F406EAD671FAC /* libPods-FloorPlay.a */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +151,8 @@
 		099FBA861967FB5E002D3688 /* Topbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Topbar.png; sourceTree = "<group>"; };
 		099FBA871967FB5E002D3688 /* btn_Signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_Signin.png; sourceTree = "<group>"; };
 		099FBA881967FB5E002D3688 /* logo.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = logo.bmp; sourceTree = "<group>"; };
+		099FBA9D19680919002D3688 /* FPAFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPAFNetworking.h; sourceTree = "<group>"; };
+		099FBA9E19680919002D3688 /* FPAFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPAFNetworking.m; sourceTree = "<group>"; };
 		107E4B76031F406EAD671FAC /* libPods-FloorPlay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FloorPlay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89379E1B457C4CDA9A96745A /* Pods-FloorPlay.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloorPlay.xcconfig"; path = "Pods/Pods-FloorPlay.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +217,7 @@
 		09022EDF1967E998009A8D7E /* FloorPlay */ = {
 			isa = PBXGroup;
 			children = (
+				099FBA9C196808A2002D3688 /* Services */,
 				09022F111967F1BE009A8D7E /* AppDelegate.h */,
 				09022F121967F1BE009A8D7E /* AppDelegate.m */,
 				09022F131967F1BE009A8D7E /* MainStoryboard_iPhone.storyboard */,
@@ -224,8 +228,6 @@
 				09022F181967F1BE009A8D7E /* SearchCategoryViewController.m */,
 				09022F191967F1BE009A8D7E /* FBSplitViewController.h */,
 				09022F1A1967F1BE009A8D7E /* FBSplitViewController.m */,
-				09022F1B1967F1BE009A8D7E /* FloorPlayServices.h */,
-				09022F1C1967F1BE009A8D7E /* FloorPlayServices.m */,
 				09022F1D1967F1BE009A8D7E /* Constants.h */,
 				09022F1E1967F1BE009A8D7E /* FirstViewController.h */,
 				09022F1F1967F1BE009A8D7E /* FirstViewController.m */,
@@ -326,6 +328,17 @@
 				099FBA881967FB5E002D3688 /* logo.bmp */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		099FBA9C196808A2002D3688 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				09022F1B1967F1BE009A8D7E /* FloorPlayServices.h */,
+				09022F1C1967F1BE009A8D7E /* FloorPlayServices.m */,
+				099FBA9D19680919002D3688 /* FPAFNetworking.h */,
+				099FBA9E19680919002D3688 /* FPAFNetworking.m */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09022F3C1967F1BE009A8D7E /* SearchCategoryViewController.m in Sources */,
+				099FBA9F19680919002D3688 /* FPAFNetworking.m in Sources */,
 				09022F381967F1BE009A8D7E /* AppDelegate.m in Sources */,
 				09022F431967F1BE009A8D7E /* FullScreenViewController.m in Sources */,
 				09022F441967F1BE009A8D7E /* AGQuadControlViewController.m in Sources */,

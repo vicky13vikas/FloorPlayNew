@@ -26,7 +26,11 @@
 	[dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
 
     NSError *error = nil;
-    NSArray *imagesArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    documentDirPath = [documentDirPath stringByAppendingString:@"/"];
+    documentDirPath = [documentDirPath stringByAppendingString:SAVED_JSON_FILE];
+    
+    NSArray *imagesArray = [NSArray arrayWithContentsOfFile:documentDirPath];
     
     if(!error)
     {

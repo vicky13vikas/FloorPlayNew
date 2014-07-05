@@ -2,18 +2,33 @@
 //  AppDelegate.m
 //  FloorPlay
 //
-//  Created by Vikas Kumar on 05/07/14.
-//  Copyright (c) 2014 Vikas Kumar. All rights reserved.
+//  Created by Vikas kumar on 12/08/13.
+//  Copyright (c) 2013 Vikas kumar. All rights reserved.
 //
 
 #import "AppDelegate.h"
+//#import "TestFlight.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+        splitViewController.delegate = (id)navigationController.topViewController;
+    }
+    
+//    [TestFlight takeOff:@"2405de51-afe8-4591-8bd4-fa9243dc636c"];
+    
+    [[FloorPlayServices singleton] startApplication];
+
     return YES;
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskAll;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

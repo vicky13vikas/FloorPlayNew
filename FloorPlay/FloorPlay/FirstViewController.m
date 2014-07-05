@@ -195,9 +195,6 @@
 
 -(void)downloadImageNamed:(NSString*)imageName
 {
-    
-    self.processCount = 0;
-    
         NSString *url = [[NSString stringWithFormat:@"data/images/%@", imageName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         FPAFNetworking *client = [FPAFNetworking imageDownloadClient];

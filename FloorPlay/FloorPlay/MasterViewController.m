@@ -73,6 +73,10 @@
             }
             [self writeToFile];
         }
+    else if (customRows.count != imageListToShow.count)
+    {
+        customRows = nil;
+    }
     [self.tableView reloadData];
 //    }
 }
@@ -134,7 +138,7 @@
     MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainTableViewCell" forIndexPath:indexPath];
 
     ImageData *image;
-    if(!isSearchMode)
+    if(!isSearchMode && customRows)
     {
         NSNumber *indexFromCustom = (NSNumber*)[customRows objectAtIndex:indexPath.row];
         image = [imageListToShow objectAtIndex:[indexFromCustom integerValue]];

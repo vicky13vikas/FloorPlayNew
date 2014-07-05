@@ -1,0 +1,55 @@
+PODS:
+  - AFNetworking (2.2.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.1):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.1)
+  - AFNetworking/Security (2.2.1)
+  - AFNetworking/Serialization (2.2.1)
+  - AFNetworking/UIKit (2.2.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AGGeometryKit (1.0.2):
+    - AGGeometryKit/Default
+  - AGGeometryKit/Core (1.0.2)
+  - AGGeometryKit/Default (1.0.2):
+    - AGGeometryKit/Core
+  - AsyncImageView (1.5.1)
+  - DACircularProgress (2.2.0)
+  - MBProgressHUD (0.8)
+  - MWPhotoBrowser (1.4.0):
+    - DACircularProgress
+    - MBProgressHUD (~> 0.8)
+    - PSTCollectionView (~> 1.2)
+    - SDWebImage (~> 3.5.4)
+  - PSTCollectionView (1.2.1)
+  - SDWebImage (3.5.4):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.5.4)
+
+DEPENDENCIES:
+  - AFNetworking (= 2.2.1)
+  - AGGeometryKit (= 1.0.2)
+  - AsyncImageView
+  - MWPhotoBrowser (= 1.4.0)
+
+SPEC CHECKSUMS:
+  AFNetworking: 8dde8c8a6597ad95dac332a593c27e541bc87371
+  AGGeometryKit: e37f4fe1f9d522a6059a091898486d2a410a88e7
+  AsyncImageView: 388442ae8314a5c99de0d98040c2926826d31da7
+  DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  MWPhotoBrowser: 4efcdb9da34751f97992128a5356f3929d1af537
+  PSTCollectionView: a63299550ad566b579479d07cb5e2bf61148686b
+  SDWebImage: 571295c8acbb699505a0f68e54506147c3de9ea7
+
+COCOAPODS: 0.33.1

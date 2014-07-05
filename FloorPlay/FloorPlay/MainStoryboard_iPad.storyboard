@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="aFu-7H-yXc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -18,7 +18,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="490" y="-674"/>
+            <point key="canvasLocation" x="482" y="-610"/>
         </scene>
         <!--Detail View Controller - Detail-->
         <scene sceneID="16">
@@ -234,7 +234,6 @@
                                 </state>
                                 <connections>
                                     <action selector="dateSourceSelected:" destination="aFu-7H-yXc" eventType="touchUpInside" id="Vqm-1d-JOX"/>
-                                    <segue destination="5" kind="modal" id="zhx-oU-46b"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Custom" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3U-WW-P2h">
@@ -291,7 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CNb-5D-Lrs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1563" y="212"/>
+            <point key="canvasLocation" x="1427" y="248"/>
         </scene>
         <!--Full Screen View Controller-->
         <scene sceneID="AIm-0n-QJm">
@@ -493,7 +492,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988" y="-674"/>
+            <point key="canvasLocation" x="860" y="-610"/>
         </scene>
         <!--Search Category View Controller - Search-->
         <scene sceneID="vQY-rj-zdW">
@@ -524,7 +523,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="qpK-8P-Yxb"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="250" height="250"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHw-kk-0HH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -554,7 +552,6 @@
                         </connections>
                     </tableView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="250" height="300"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRu-c0-zSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -566,7 +563,6 @@
                 <navigationController definesPresentationContext="YES" id="kKe-y4-AF1" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Iqo-Ih-Y2V"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="768" height="1024"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vf5-qg-kgN">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -808,7 +804,6 @@
                     </collectionView>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="450"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7m-YO-jM2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -852,7 +847,6 @@
                     </collectionView>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="450"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdl-Y7-PFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

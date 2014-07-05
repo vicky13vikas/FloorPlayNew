@@ -8,7 +8,7 @@
 
 #import "FirstViewController.h"
 #import "Constants.h"
-#import "AFHTTPClient.h"
+//#import "AFHTTPClient.h"
 #import "UIViewControllerCategories.h"
 #import "AFHTTPRequestOperation.h"
 #import "ImagesDataParser.h"
@@ -49,8 +49,8 @@
     [super viewDidAppear:animated];
     if(![[[FloorPlayServices singleton] preferences] objectForKey:IS_FIRST_TIME_LAUNCH])
     {
-        [self downloadImagesListFirstTime];
-        [self downloadBackgroundImages];
+//        [self downloadImagesListFirstTime];
+//        [self downloadBackgroundImages];
     }
     else
     {
@@ -80,12 +80,12 @@
 
 - (IBAction)updateTapped:(id)sender
 {
-    [self downloadImagesListFirstTime];
-    [self downloadAllImagesBG];
+//    [self downloadImagesListFirstTime];
+//    [self downloadAllImagesBG];
 }
 
 
-
+/*
 -(void)downloadImagesListFirstTime
 {
     NSString *url = [NSString stringWithFormat:@"%@getImage.php",SERVER_URL];
@@ -137,7 +137,7 @@
     [self showLoadingScreenWithMessage:@"Downloading..."];
     
 }
-
+*/
 -(void)saveJsonData:(NSData*)data
 {
     NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];

@@ -70,7 +70,7 @@
 //    if(isAppearFirstTime)
 //    {
         isAppearFirstTime = NO;
-        self.image = [[[ImagesDataSource singleton] objects] objectAtIndex:0];
+        self.image = [[[ImagesDataSource singleton] objects] firstObject];
 //    }
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];

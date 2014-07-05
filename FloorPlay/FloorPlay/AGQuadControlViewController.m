@@ -8,7 +8,6 @@
 
 #import "AGQuadControlViewController.h"
 #import <AGGeometryKit/AGGeometryKit.h>
-//#import "easing.h"
 #import "BackgroundImagesViewController.h"
 #import "CarpetImagesViewController.h"
 
@@ -47,12 +46,12 @@
 
 - (void)createAndApplyQuad
 {
-    AGQuad quad = AGQuadMakeWithCGPoints(self.topLeftControl.center,
+    AGKQuad quad = AGKQuadMake(self.topLeftControl.center,
                                          self.topRightControl.center,
                                          self.bottomRightControl.center,
                                          self.bottomLeftControl.center);
     
-    if(AGQuadIsValid(quad))
+    if(AGKQuadIsValid(quad))
     {
         self.imageView.layer.quadrilateral = quad;
     }

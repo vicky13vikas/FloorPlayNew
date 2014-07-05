@@ -40,6 +40,7 @@
 		09022F511967F758009A8D7E /* StringCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F4E1967F758009A8D7E /* StringCategories.m */; };
 		09022F521967F758009A8D7E /* UIViewControllerCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F501967F758009A8D7E /* UIViewControllerCategories.m */; };
 		09022F551967F79A009A8D7E /* UIImageCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F541967F79A009A8D7E /* UIImageCategories.m */; };
+		0975132D19682DDF00104990 /* FBImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975132C19682DDF00104990 /* FBImagePickerViewController.m */; };
 		099FBA891967FB5E002D3688 /* DefaultBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA761967FB5E002D3688 /* DefaultBG.jpg */; };
 		099FBA8A1967FB5E002D3688 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA771967FB5E002D3688 /* arrow.png */; };
 		099FBA8B1967FB5E002D3688 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA781967FB5E002D3688 /* arrow@2x.png */; };
@@ -132,6 +133,8 @@
 		09022F501967F758009A8D7E /* UIViewControllerCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerCategories.m; sourceTree = "<group>"; };
 		09022F531967F79A009A8D7E /* UIImageCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCategories.h; sourceTree = "<group>"; };
 		09022F541967F79A009A8D7E /* UIImageCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageCategories.m; sourceTree = "<group>"; };
+		0975132B19682DDF00104990 /* FBImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBImagePickerViewController.h; sourceTree = "<group>"; };
+		0975132C19682DDF00104990 /* FBImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBImagePickerViewController.m; sourceTree = "<group>"; };
 		099FBA761967FB5E002D3688 /* DefaultBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DefaultBG.jpg; sourceTree = "<group>"; };
 		099FBA771967FB5E002D3688 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		099FBA781967FB5E002D3688 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				09022F351967F1BE009A8D7E /* ImagesDataSource.m */,
 				09022F361967F1BE009A8D7E /* ImagesDataParser.h */,
 				09022F371967F1BE009A8D7E /* ImagesDataParser.m */,
+				0975132B19682DDF00104990 /* FBImagePickerViewController.h */,
+				0975132C19682DDF00104990 /* FBImagePickerViewController.m */,
 				099FBA751967FB4B002D3688 /* Images */,
 				09022F4C1967F746009A8D7E /* Categories */,
 				09022EE01967E998009A8D7E /* Supporting Files */,
@@ -500,6 +505,7 @@
 				09022F491967F1BE009A8D7E /* ImageData.m in Sources */,
 				09022F551967F79A009A8D7E /* UIImageCategories.m in Sources */,
 				09022F411967F1BE009A8D7E /* DetailViewController.m in Sources */,
+				0975132D19682DDF00104990 /* FBImagePickerViewController.m in Sources */,
 				09022F4A1967F1BE009A8D7E /* ImagesDataSource.m in Sources */,
 				09022F3F1967F1BE009A8D7E /* FirstViewController.m in Sources */,
 				09022F421967F1BE009A8D7E /* MainTableViewCell.m in Sources */,

@@ -10,6 +10,7 @@
 #import <AGGeometryKit/AGGeometryKit.h>
 #import "BackgroundImagesViewController.h"
 #import "CarpetImagesViewController.h"
+#import "FBImagePickerViewController.h"
 
 @interface AGQuadControlViewController ()<UIAlertViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BackgroundImagesDelegate, CarpetImagesDelegate>
 {
@@ -24,7 +25,7 @@
 @property (nonatomic, strong) IBOutlet UIView *maskView;
 @property (nonatomic, strong) IBOutlet UISwitch *switchControl;
 @property (weak, nonatomic) IBOutlet UIView *barView;
-@property (strong, nonatomic) UIImagePickerController *cameraPicker;
+@property (strong, nonatomic) FBImagePickerViewController *cameraPicker;
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @property (strong, nonatomic) UIPopoverController  *popOver;
@@ -208,23 +209,26 @@
 {
     if(_cameraPicker == nil)
     {
-        _cameraPicker = [[UIImagePickerController alloc] init];
+        _cameraPicker = [[FBImagePickerViewController alloc] init];
         _cameraPicker.delegate = self;
     }
     
     [_cameraPicker setSourceType:sourceType];
     
 //    [self presentViewController:_cameraPicker animated:YES completion:nil];
-    CGRect rect = [_barView convertRect:_btnChangeBG.frame toView:self.view];
-    _popOver = [[UIPopoverController alloc] initWithContentViewController:_cameraPicker];
-    [_popOver presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//    CGRect rect = [_barView convertRect:_btnChangeBG.frame toView:self.view];
+//    _popOver = [[UIPopoverController alloc] initWithContentViewController:_cameraPicker];
+//    [_popOver presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+    [self presentViewController:_cameraPicker animated:YES
+                     completion:nil];
 
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-//    [_cameraPicker dismissViewControllerAnimated:NO completion:nil];
+    [_cameraPicker dismissViewControllerAnimated:NO completion:nil];
     [_popOver dismissPopoverAnimated:YES];
     
     UIImage *_pickedAvatar;
@@ -243,7 +247,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-//    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
     [_popOver dismissPopoverAnimated:YES];
 }
 

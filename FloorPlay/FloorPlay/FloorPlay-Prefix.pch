@@ -15,3 +15,7 @@
     #import <Foundation/Foundation.h>
     #import "FloorPlayServices.h"
 #endif
+
+
+// To check if the current device is iPad or not
+#define isIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)

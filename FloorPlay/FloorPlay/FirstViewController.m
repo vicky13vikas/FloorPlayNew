@@ -17,8 +17,7 @@
 
 @interface FirstViewController ()
 
-@property (nonatomic) NSInteger processCount;
-@property (nonatomic) NSInteger processCountBG;
+@property (nonatomic) NSInteger imageDownloadCount;
 
 @property (nonatomic, retain) NSMutableArray *imagesList;
 @property (nonatomic, retain) NSMutableArray *bgImagesList;
@@ -43,6 +42,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    _imageDownloadCount = 0;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -190,16 +191,37 @@
     }
 }
 
+-(void)downloadDone
+{
+    _imageDownloadCount--;
+    if(_imageDownloadCount <= 0)
+    {
+        [self hideLoadingScreen];
+    }
+}
+
+-(void)downloadFailed
+{
+    _imageDownloadCount--;
+    if(_imageDownloadCount <= 0)
+    {
+        [self hideLoadingScreen];
+    }
+}
+
 -(void)downloadImageNamed:(NSString*)imageName
 {
         NSString *url = [[NSString stringWithFormat:@"data/images/%@", imageName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         FPAFNetworking *client = [FPAFNetworking imageDownloadClient];
-        
+    
+        _imageDownloadCount++;
         [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
         {
+            [self downloadDone];
             [self saveImage:responseObject forURL:task.response.URL];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [self downloadFailed];
             NSLog(@"%@", error);
         }];
         
@@ -247,46 +269,20 @@
     for (int i = 0; i < _bgImagesList.count; i++)
     {
         NSString *urlPath = _bgImagesList[i];
-        
+        _imageDownloadCount++;
         
         FPAFNetworking *client = [FPAFNetworking imageDownloadClient];
         
         [client GET:urlPath parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
          {
+             [self downloadDone];
              [self saveBGImage:responseObject forURL:task.response.URL];
          } failure:^(NSURLSessionDataTask *task, NSError *error) {
              NSLog(@"%@", error);
+             [self downloadFailed];
          }];
         
         [self showLoadingScreenWithMessage:@"Downloading Images..."];
-
-/*
-        operation.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             self.processCountBG++;
-             NSLog(@"File :%d Success!", _processCountBG);
-             
-             // all the files have been saved, now update the playlist
-             if (self.processCountBG == [_bgImagesList count])
-             {
-                 [self hideLoadingScreen];
-                 [[ImagesDataSource singleton] update];
-             }
-             
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             self.processCountBG++;
-             NSLog(@"ERROR ERROR ERROR:%@ - could not save to path:%@", error, filePath);
-             if (self.processCountBG == [_bgImagesList count])
-             {
-                 [self hideLoadingScreen];
-             }
-         } ];
-        [self showLoadingScreenWithMessage:@"Downloading Images..."];
-        [operation start];
- */
-        
     }
 
 }

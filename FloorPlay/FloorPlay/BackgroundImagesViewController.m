@@ -40,7 +40,7 @@
     
     NSArray *dirPathSearch = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDirPath = [dirPathSearch objectAtIndex:0];
-    NSString *dirPath = [docDirPath stringByAppendingPathComponent:@"BGImages/"];
+    NSString *dirPath = [docDirPath stringByAppendingPathComponent:@"BackgroundImages/"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
 
     if (![fileManager fileExistsAtPath:dirPath])

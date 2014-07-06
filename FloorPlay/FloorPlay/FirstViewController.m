@@ -14,8 +14,10 @@
 #import "ImagesDataParser.h"
 #import "ImagesDataSource.h"
 #import "FPAFNetworking.h"
+#import "ProductMasterViewController.h"
+#import "CustomDataSource.h"
 
-@interface FirstViewController ()
+@interface FirstViewController () <ProductMasterDelegate>
 
 @property (nonatomic) NSInteger imageDownloadCount;
 
@@ -52,6 +54,7 @@
     if(![[[FloorPlayServices singleton] preferences] objectForKey:IS_FIRST_TIME_LAUNCH])
     {
         [self downloadImagesListFirstTime];
+        [self downloadCustomProductsImages];
         [self downloadBackgroundImages];
     }
     else
@@ -73,16 +76,24 @@
     
     if([_dataFrom isEqualToString:@"Custom"])
     {
-        self.master.isCustom = YES;
+//        self.master.isCustom = YES;
+        ProductMasterViewController *vc = (ProductMasterViewController*)[[UIStoryboard storyboardWithName:@"CustomProducts_iPad" bundle:nil] instantiateInitialViewController];
+        vc.productMasterDelegate = self;
+        vc.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:vc animated:YES
+                         completion:nil];
     }
     else
+    {
         self.master.isCustom = NO;
-    [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 
 - (IBAction)updateTapped:(id)sender
 {
     [self downloadImagesListFirstTime];
+    [self downloadCustomProductsImages];
     [self downloadBackgroundImages];
 }
 
@@ -95,7 +106,7 @@
     FPAFNetworking * client = [FPAFNetworking client];    
     [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
     {
-        [self saveJsonData:responseObject];
+        [self saveJsonData:responseObject ToFile:SAVED_JSON_FILE];
         [self loadDataFromSavedJson];
         [self downloadInventoryImages];
         
@@ -109,6 +120,26 @@
     [self showLoadingScreenWithMessage:@"Downloading..."];
 }
 
+-(void)downloadCustomProductsImages
+{
+    NSString *url = [NSString stringWithFormat:@"api/getCustomProduct.php"];
+    
+    FPAFNetworking * client = [FPAFNetworking client];
+    [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+         [self saveJsonData:responseObject ToFile:SAVED_JSON_PRODUCT_MASTER];
+         [self downloadCustomProductImages];
+         
+     } failure:^(NSURLSessionDataTask *task, NSError *error)
+     {
+         [self showAlertWithMessage:[error localizedDescription] andTitle:@"Error"];
+         [self hideLoadingScreen];
+         
+     }];
+    
+    [self showLoadingScreenWithMessage:@"Downloading..."];
+}
+
 
 -(void)downloadBackgroundImages
 {
@@ -117,7 +148,7 @@
     FPAFNetworking * client = [FPAFNetworking client];
     [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
      {
-         [self saveBackgroundJsonData:responseObject];
+         [self saveJsonData:responseObject ToFile:SAVED_BG_IMAGES_JSON_FILE];
          [self loadDataFromSavedJsonBGList];
          [self downloadAllImagesBG];
          
@@ -132,24 +163,15 @@
     
 }
 
--(void)saveJsonData:(NSData*)data
+-(void)saveJsonData:(NSData*)data ToFile:(NSString*)fileName
 {
     NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     documentDirPath = [documentDirPath stringByAppendingString:@"/"];
-    documentDirPath = [documentDirPath stringByAppendingString:SAVED_JSON_FILE];
+    documentDirPath = [documentDirPath stringByAppendingString:fileName];
     
     [data writeToFile:documentDirPath atomically:YES];
     
     [[[FloorPlayServices singleton] preferences] setObject:@"YES" forKey:IS_FIRST_TIME_LAUNCH];
-}
-
--(void)saveBackgroundJsonData:(NSData*)data
-{
-    NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    documentDirPath = [documentDirPath stringByAppendingString:@"/"];
-    documentDirPath = [documentDirPath stringByAppendingString:SAVED_BG_IMAGES_JSON_FILE];
-    
-    [data writeToFile:documentDirPath atomically:YES];
 }
 
 -(void)loadDataFromSavedJson
@@ -191,6 +213,22 @@
     }
 }
 
+-(void)downloadCustomProductImages
+{
+    NSArray *products = [[CustomDataSource sharedData] getProductMasterList];
+    for (FPProduct *product in products)
+    {
+        for (ImageData *image in product.customProducts)
+        {
+            for (NSString *imageName in image.imagesList)
+            {
+                if(imageName.length > 0)
+                    [self downloadCustomImageNamed:imageName inProduct:product];
+            }
+        }
+    }
+}
+
 -(void)downloadDone
 {
     _imageDownloadCount--;
@@ -226,6 +264,25 @@
         }];
         
         [self showLoadingScreenWithMessage:@"Downloading Images..."];
+}
+
+-(void)downloadCustomImageNamed:(NSString*)imageName inProduct:(FPProduct*)product
+{
+    NSString *url = [[NSString stringWithFormat:@"data/customProduct/%@/%@", product.folderName, imageName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    FPAFNetworking *client = [FPAFNetworking imageDownloadClient];
+    
+    _imageDownloadCount++;
+    [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+         [self downloadDone];
+         [self saveImage:responseObject forURL:task.response.URL];
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         [self downloadFailed];
+         NSLog(@"%@", error);
+     }];
+    
+    [self showLoadingScreenWithMessage:@"Downloading Images..."];
 }
 
 - (void)saveImage:(UIImage*)image forURL:(NSURL*)url
@@ -297,5 +354,14 @@
     return  UIInterfaceOrientationMaskLandscape;
 }
 
+#pragma mark - ProductMasterDelegate -
+
+-(void)productMasterController:(ProductMasterViewController*) controller didSelectProductID:(FPProduct*)product
+{
+    self.imagesList = [NSMutableArray arrayWithArray:[product customProducts]];
+    [[ImagesDataSource singleton] cacheData:self.imagesList];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

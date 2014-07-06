@@ -40,6 +40,10 @@
 		09022F511967F758009A8D7E /* StringCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F4E1967F758009A8D7E /* StringCategories.m */; };
 		09022F521967F758009A8D7E /* UIViewControllerCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F501967F758009A8D7E /* UIViewControllerCategories.m */; };
 		09022F551967F79A009A8D7E /* UIImageCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F541967F79A009A8D7E /* UIImageCategories.m */; };
+		09073DF419693A080034D98F /* CustomProducts_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09073DF319693A080034D98F /* CustomProducts_iPad.storyboard */; };
+		09073DF819693A560034D98F /* ProductMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09073DF719693A560034D98F /* ProductMasterViewController.m */; };
+		09073DFB196949820034D98F /* CustomDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 09073DFA196949820034D98F /* CustomDataSource.m */; };
+		09073E02196959D40034D98F /* FPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 09073E01196959D40034D98F /* FPProduct.m */; };
 		0975132D19682DDF00104990 /* FBImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975132C19682DDF00104990 /* FBImagePickerViewController.m */; };
 		099FBA891967FB5E002D3688 /* DefaultBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA761967FB5E002D3688 /* DefaultBG.jpg */; };
 		099FBA8A1967FB5E002D3688 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA771967FB5E002D3688 /* arrow.png */; };
@@ -133,6 +137,13 @@
 		09022F501967F758009A8D7E /* UIViewControllerCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerCategories.m; sourceTree = "<group>"; };
 		09022F531967F79A009A8D7E /* UIImageCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCategories.h; sourceTree = "<group>"; };
 		09022F541967F79A009A8D7E /* UIImageCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageCategories.m; sourceTree = "<group>"; };
+		09073DF319693A080034D98F /* CustomProducts_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomProducts_iPad.storyboard; sourceTree = "<group>"; };
+		09073DF619693A560034D98F /* ProductMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductMasterViewController.h; sourceTree = "<group>"; };
+		09073DF719693A560034D98F /* ProductMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMasterViewController.m; sourceTree = "<group>"; };
+		09073DF9196949820034D98F /* CustomDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDataSource.h; sourceTree = "<group>"; };
+		09073DFA196949820034D98F /* CustomDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDataSource.m; sourceTree = "<group>"; };
+		09073E00196959D40034D98F /* FPProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPProduct.h; sourceTree = "<group>"; };
+		09073E01196959D40034D98F /* FPProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPProduct.m; sourceTree = "<group>"; };
 		0975132B19682DDF00104990 /* FBImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBImagePickerViewController.h; sourceTree = "<group>"; };
 		0975132C19682DDF00104990 /* FBImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBImagePickerViewController.m; sourceTree = "<group>"; };
 		099FBA761967FB5E002D3688 /* DefaultBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DefaultBG.jpg; sourceTree = "<group>"; };
@@ -220,6 +231,8 @@
 		09022EDF1967E998009A8D7E /* FloorPlay */ = {
 			isa = PBXGroup;
 			children = (
+				09073DFC1969597D0034D98F /* Models */,
+				09073DF519693A1A0034D98F /* CustomProducts */,
 				099FBA9C196808A2002D3688 /* Services */,
 				09022F111967F1BE009A8D7E /* AppDelegate.h */,
 				09022F121967F1BE009A8D7E /* AppDelegate.m */,
@@ -252,10 +265,6 @@
 				09022F2F1967F1BE009A8D7E /* BackgroundImagesViewController.m */,
 				09022F301967F1BE009A8D7E /* CarpetImagesViewController.h */,
 				09022F311967F1BE009A8D7E /* CarpetImagesViewController.m */,
-				09022F321967F1BE009A8D7E /* ImageData.h */,
-				09022F331967F1BE009A8D7E /* ImageData.m */,
-				09022F341967F1BE009A8D7E /* ImagesDataSource.h */,
-				09022F351967F1BE009A8D7E /* ImagesDataSource.m */,
 				09022F361967F1BE009A8D7E /* ImagesDataParser.h */,
 				09022F371967F1BE009A8D7E /* ImagesDataParser.m */,
 				0975132B19682DDF00104990 /* FBImagePickerViewController.h */,
@@ -307,6 +316,31 @@
 				09022F501967F758009A8D7E /* UIViewControllerCategories.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		09073DF519693A1A0034D98F /* CustomProducts */ = {
+			isa = PBXGroup;
+			children = (
+				09073DF319693A080034D98F /* CustomProducts_iPad.storyboard */,
+				09073DF619693A560034D98F /* ProductMasterViewController.h */,
+				09073DF719693A560034D98F /* ProductMasterViewController.m */,
+			);
+			name = CustomProducts;
+			sourceTree = "<group>";
+		};
+		09073DFC1969597D0034D98F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				09022F321967F1BE009A8D7E /* ImageData.h */,
+				09022F331967F1BE009A8D7E /* ImageData.m */,
+				09022F341967F1BE009A8D7E /* ImagesDataSource.h */,
+				09022F351967F1BE009A8D7E /* ImagesDataSource.m */,
+				09073E00196959D40034D98F /* FPProduct.h */,
+				09073E01196959D40034D98F /* FPProduct.m */,
+				09073DF9196949820034D98F /* CustomDataSource.h */,
+				09073DFA196949820034D98F /* CustomDataSource.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		099FBA751967FB4B002D3688 /* Images */ = {
@@ -438,6 +472,7 @@
 				099FBA921967FB5E002D3688 /* arrow_next.png in Resources */,
 				099FBA941967FB5E002D3688 /* navBarBtn.png in Resources */,
 				099FBA891967FB5E002D3688 /* DefaultBG.jpg in Resources */,
+				09073DF419693A080034D98F /* CustomProducts_iPad.storyboard in Resources */,
 				099FBA951967FB5E002D3688 /* textViewBG.png in Resources */,
 				099FBA991967FB5E002D3688 /* Topbar.png in Resources */,
 				099FBA8A1967FB5E002D3688 /* arrow.png in Resources */,
@@ -497,11 +532,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09073DF819693A560034D98F /* ProductMasterViewController.m in Sources */,
 				09022F3C1967F1BE009A8D7E /* SearchCategoryViewController.m in Sources */,
 				099FBA9F19680919002D3688 /* FPAFNetworking.m in Sources */,
 				09022F381967F1BE009A8D7E /* AppDelegate.m in Sources */,
 				09022F431967F1BE009A8D7E /* FullScreenViewController.m in Sources */,
 				09022F441967F1BE009A8D7E /* AGQuadControlViewController.m in Sources */,
+				09073E02196959D40034D98F /* FPProduct.m in Sources */,
 				09022F491967F1BE009A8D7E /* ImageData.m in Sources */,
 				09022F551967F79A009A8D7E /* UIImageCategories.m in Sources */,
 				09022F411967F1BE009A8D7E /* DetailViewController.m in Sources */,
@@ -521,6 +558,7 @@
 				09022F461967F1BE009A8D7E /* UIImagePickerController+OrientationFix.m in Sources */,
 				09022F511967F758009A8D7E /* StringCategories.m in Sources */,
 				09022F451967F1BE009A8D7E /* UIViewController+OrientationFix.m in Sources */,
+				09073DFB196949820034D98F /* CustomDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

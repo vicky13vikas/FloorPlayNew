@@ -68,7 +68,7 @@
     
     UILabel * headerTitle = [[UILabel alloc] init];
     [headerTitle setTextAlignment:NSTextAlignmentCenter];
-    [headerTitle setText:NSLocalizedString(@"SELECT ANY PRODUCT", nil)];
+    [headerTitle setText:NSLocalizedString(@"SELECT ANY CUSTOM PRODUCT", nil)];
     [headerTitle setTextColor:[UIColor whiteColor]];
     [headerTitle setFont:[UIFont systemFontOfSize:12]];
     [header addSubview:headerTitle];

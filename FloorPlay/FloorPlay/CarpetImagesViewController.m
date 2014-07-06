@@ -42,12 +42,9 @@
     NSArray *array = [[ImagesDataSource singleton] objects];
     for(ImageData *imagedata in  array)
     {
-//        for (NSString *imageName in imagedata.imagesList)
-//        {
-            UIImage *image = [[ImagesDataSource singleton] getImageFromImageName:imagedata.imagesList[0]];
-            if(image)
-                [carpetImages addObject:image];
-//        }
+        UIImage *image = [[ImagesDataSource singleton] getImageFromImageName:[imagedata.imagesList firstObject]];
+        if(image)
+            [carpetImages addObject:image];
     }
 }
 

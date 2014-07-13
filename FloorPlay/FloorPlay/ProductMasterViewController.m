@@ -44,6 +44,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    _productsList = [NSMutableArray arrayWithArray:[[CustomDataSource sharedData] getProductMasterList]];
     [super viewWillAppear:animated];
     [[self tableView] reloadData];
 }

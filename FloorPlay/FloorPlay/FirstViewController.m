@@ -105,6 +105,28 @@
     [self downloadImagesListFirstTime];
     [self downloadCustomProductsImages];
     [self downloadBackgroundImages];
+    
+    [self deleteFiles];
+}
+
+-(void)deleteFiles
+{
+    NSString *fileName1;
+    NSString *fileName2;
+    
+    fileName1 = @"CustomImages.plist";
+    fileName2 = @"InventoryImages.plist";
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *customPlistPath =  [documentsDirectory stringByAppendingPathComponent:fileName1];
+    
+    
+    [[NSFileManager defaultManager] removeItemAtPath:customPlistPath error:nil];
+    
+    customPlistPath =  [documentsDirectory stringByAppendingPathComponent:fileName2];
+  
+    [[NSFileManager defaultManager] removeItemAtPath:customPlistPath error:nil];
 }
 
 

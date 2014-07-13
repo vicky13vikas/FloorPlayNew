@@ -60,12 +60,13 @@
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     imageListToShow = [[ImagesDataSource singleton] objects];
     
-//    if(self.isCustom)
-//    {
+    customRows = nil;
+    if(!self.isCustom)
+    {
         _btnShowAll.enabled = YES;
         _btnShowAll.title = @"Reset";
         _btnEdit.enabled = YES;
-
+        
         customRows = [self readFromFile];
         if(customRows.count == 0)
         {
@@ -77,16 +78,16 @@
             }
             [self writeToFile];
         }
-    else if (customRows.count != imageListToShow.count)
-    {
-        customRows = nil;
+        [self.tableView reloadData];
     }
-    [self.tableView reloadData];
-//    }
     [self.navigationItem setLeftBarButtonItem:nil];
     [self.navigationItem setLeftBarButtonItems:nil];
     
-    
+   
+    MainTableViewCell *cell = (MainTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+
+    self.detailViewController.image = cell.image;
+    [self.detailViewController updateImage];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -113,8 +114,8 @@
     if(_isCustom)
     {
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
-        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(btnEditTapped:)];
-        [self.navigationItem setLeftBarButtonItems:@[backButton, editButton]];
+//        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(btnEditTapped:)];
+        [self.navigationItem setLeftBarButtonItems:@[backButton]];
     }
     else
     {
@@ -160,7 +161,7 @@
     MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainTableViewCell" forIndexPath:indexPath];
 
     ImageData *image;
-    if(!isSearchMode && customRows)
+    if(!isSearchMode && !_isCustom)
     {
         NSNumber *indexFromCustom = (NSNumber*)[customRows objectAtIndex:indexPath.row];
         image = [imageListToShow objectAtIndex:[indexFromCustom integerValue]];
@@ -318,6 +319,7 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     searchBar.showsCancelButton = YES;
+    isSearchMode = YES;
     return YES;
 }
 
@@ -328,6 +330,7 @@
         [self.searchBar resignFirstResponder];
         [self.searchBar setShowsCancelButton:NO animated:YES];
     }
+    isSearchMode = NO;
     return YES;
 }
 

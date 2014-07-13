@@ -18,7 +18,6 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[[self class] alloc] init];
         
-        [sharedInstance updateProductsList];
     });
     return sharedInstance;
 }
@@ -26,6 +25,7 @@
 
 - (NSArray*)getProductMasterList
 {
+    [self updateProductsList];
     return [NSArray arrayWithArray:_objects];
 }
 
@@ -35,6 +35,7 @@
     {
         _objects = [[NSMutableArray alloc] init];
     }
+    [_objects removeAllObjects];
     NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     documentDirPath = [documentDirPath stringByAppendingString:@"/"];
     documentDirPath = [documentDirPath stringByAppendingString:SAVED_JSON_PRODUCT_MASTER];

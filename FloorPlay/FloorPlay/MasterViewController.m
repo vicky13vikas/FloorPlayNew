@@ -39,6 +39,10 @@
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
+    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    
     [super awakeFromNib];
 }
 
@@ -79,6 +83,10 @@
     }
     [self.tableView reloadData];
 //    }
+    [self.navigationItem setLeftBarButtonItem:nil];
+    [self.navigationItem setLeftBarButtonItems:nil];
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -101,6 +109,20 @@
     [self.navigationController.navigationBar setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHide) name:UIKeyboardDidHideNotification object:nil];
+    
+    if(_isCustom)
+    {
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
+        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(btnEditTapped:)];
+        [self.navigationItem setLeftBarButtonItems:@[backButton, editButton]];
+    }
+    else
+    {
+        
+        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(btnEditTapped:)];
+        [self.navigationItem setLeftBarButtonItem:editButton];
+    }
+
 }
 
 
@@ -370,6 +392,10 @@
     return  UIInterfaceOrientationMaskLandscape;
 }
 
+-(IBAction)backTapped:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (IBAction)ShowAllTapped:(id)sender
 {
     if([_btnShowAll.title isEqualToString:@"Reset"])

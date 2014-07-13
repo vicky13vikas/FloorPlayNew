@@ -8,6 +8,8 @@
 
 #import "ProductMasterViewController.h"
 #import "CustomDataSource.h"
+#import "MasterViewController.h"
+#import "ImagesDataSource.h"
 
 #define HEADER_HEIGHT 50
 
@@ -33,6 +35,11 @@
 {
     [super viewDidLoad];
     _productsList = [NSMutableArray arrayWithArray:[[CustomDataSource sharedData] getProductMasterList]];
+    
+    MasterViewController *vc= [self.storyboard instantiateViewControllerWithIdentifier:@"MasterViewController"];
+    [self.navigationController pushViewController:vc animated:NO];
+    
+    self.title = @"PRODUCTS";
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -89,14 +96,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self dismissViewControllerAnimated:NO completion:^{
-        FPProduct *product = _productsList[indexPath.row];
-        
-        if(_productMasterDelegate && [_productMasterDelegate respondsToSelector:@selector(productMasterController:didSelectProductID:)])
-        {
-            [_productMasterDelegate productMasterController:self didSelectProductID:product];
-        }
-    }];
+//    [self dismissViewControllerAnimated:NO completion:^{
+//        FPProduct *product = _productsList[indexPath.row];
+//        
+//        if(_productMasterDelegate && [_productMasterDelegate respondsToSelector:@selector(productMasterController:didSelectProduct:)])
+//        {
+//            [_productMasterDelegate productMasterController:self didSelectProduct:product];
+//        }
+//    }];
+    
+    FPProduct *product = _productsList[indexPath.row];
+     [[ImagesDataSource singleton] cacheData:[product customProducts]];
+    
+    MasterViewController *vc= [self.storyboard instantiateViewControllerWithIdentifier:@"MasterViewController"];
+    vc.isCustom = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

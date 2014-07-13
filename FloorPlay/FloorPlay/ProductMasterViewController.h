@@ -13,7 +13,7 @@
 
 @protocol ProductMasterDelegate <NSObject>
 @optional
--(void)productMasterController:(ProductMasterViewController*) controller didSelectProductID:(FPProduct*)productID;
+-(void)productMasterController:(ProductMasterViewController*) controller didSelectProduct:(FPProduct*)productID;
 
 @end
 

@@ -40,7 +40,6 @@
 		09022F511967F758009A8D7E /* StringCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F4E1967F758009A8D7E /* StringCategories.m */; };
 		09022F521967F758009A8D7E /* UIViewControllerCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F501967F758009A8D7E /* UIViewControllerCategories.m */; };
 		09022F551967F79A009A8D7E /* UIImageCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 09022F541967F79A009A8D7E /* UIImageCategories.m */; };
-		09073DF419693A080034D98F /* CustomProducts_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09073DF319693A080034D98F /* CustomProducts_iPad.storyboard */; };
 		09073DF819693A560034D98F /* ProductMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09073DF719693A560034D98F /* ProductMasterViewController.m */; };
 		09073DFB196949820034D98F /* CustomDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 09073DFA196949820034D98F /* CustomDataSource.m */; };
 		09073E02196959D40034D98F /* FPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 09073E01196959D40034D98F /* FPProduct.m */; };
@@ -137,7 +136,6 @@
 		09022F501967F758009A8D7E /* UIViewControllerCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerCategories.m; sourceTree = "<group>"; };
 		09022F531967F79A009A8D7E /* UIImageCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCategories.h; sourceTree = "<group>"; };
 		09022F541967F79A009A8D7E /* UIImageCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageCategories.m; sourceTree = "<group>"; };
-		09073DF319693A080034D98F /* CustomProducts_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomProducts_iPad.storyboard; sourceTree = "<group>"; };
 		09073DF619693A560034D98F /* ProductMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductMasterViewController.h; sourceTree = "<group>"; };
 		09073DF719693A560034D98F /* ProductMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMasterViewController.m; sourceTree = "<group>"; };
 		09073DF9196949820034D98F /* CustomDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDataSource.h; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 		09073DF519693A1A0034D98F /* CustomProducts */ = {
 			isa = PBXGroup;
 			children = (
-				09073DF319693A080034D98F /* CustomProducts_iPad.storyboard */,
 				09073DF619693A560034D98F /* ProductMasterViewController.h */,
 				09073DF719693A560034D98F /* ProductMasterViewController.m */,
 			);
@@ -472,7 +469,6 @@
 				099FBA921967FB5E002D3688 /* arrow_next.png in Resources */,
 				099FBA941967FB5E002D3688 /* navBarBtn.png in Resources */,
 				099FBA891967FB5E002D3688 /* DefaultBG.jpg in Resources */,
-				09073DF419693A080034D98F /* CustomProducts_iPad.storyboard in Resources */,
 				099FBA951967FB5E002D3688 /* textViewBG.png in Resources */,
 				099FBA991967FB5E002D3688 /* Topbar.png in Resources */,
 				099FBA8A1967FB5E002D3688 /* arrow.png in Resources */,

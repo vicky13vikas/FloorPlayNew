@@ -17,4 +17,6 @@
 
 @property (strong, nonatomic) MasterViewController *master;
 
+@property (strong, nonatomic) UISplitViewController *splitViewController;
+
 @end

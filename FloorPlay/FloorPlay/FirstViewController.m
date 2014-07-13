@@ -73,20 +73,30 @@
 - (IBAction)dateSourceSelected:(id)sender
 {
     _dataFrom = [sender restorationIdentifier];
-    
+
+    if([[[_splitViewController.viewControllers objectAtIndex:0] viewControllers] count] == 2)
+    {
+        _master = [[_splitViewController.viewControllers objectAtIndex:0] topViewController];
+    }
+        
     if([_dataFrom isEqualToString:@"Custom"])
     {
-//        self.master.isCustom = YES;
-        ProductMasterViewController *vc = (ProductMasterViewController*)[[UIStoryboard storyboardWithName:@"CustomProducts_iPad" bundle:nil] instantiateInitialViewController];
-        vc.productMasterDelegate = self;
-        vc.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:vc animated:YES
-                         completion:nil];
+        self.master.isCustom = YES;
+        [self dismissViewControllerAnimated:NO completion:^{
+            [[_splitViewController.viewControllers objectAtIndex:0] popToRootViewControllerAnimated:NO];
+        }];
+        
+//        [self.master.navigationController popViewControllerAnimated:NO];
     }
     else
     {
         self.master.isCustom = NO;
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:NO completion:^{
+            if([[[_splitViewController.viewControllers objectAtIndex:0] viewControllers] count] == 1)
+            {
+                [[_splitViewController.viewControllers objectAtIndex:0] pushViewController:_master animated:NO];
+            }
+        }];
     }
 }
 
@@ -356,7 +366,7 @@
 
 #pragma mark - ProductMasterDelegate -
 
--(void)productMasterController:(ProductMasterViewController*) controller didSelectProductID:(FPProduct*)product
+-(void)productMasterController:(ProductMasterViewController*) controller didSelectProduct:(FPProduct*)product
 {
     self.imagesList = [NSMutableArray arrayWithArray:[product customProducts]];
     [[ImagesDataSource singleton] cacheData:self.imagesList];

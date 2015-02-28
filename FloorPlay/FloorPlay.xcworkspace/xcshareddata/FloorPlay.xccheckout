@@ -12,20 +12,24 @@
 	<dict>
 		<key>6F868B92-5A3B-4601-8B19-2BF82388A4AD</key>
 		<string>https://github.com/vicky13vikas/FloorPlayNew.git</string>
+		<key>D42CAAF2E72F9443435A0D34DDB5ADEC831C6CBC</key>
+		<string>https://github.com/vicky13vikas/FloorPlayNew.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>FloorPlay/FloorPlay.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6F868B92-5A3B-4601-8B19-2BF82388A4AD</key>
+		<string>../../../NewGit</string>
+		<key>D42CAAF2E72F9443435A0D34DDB5ADEC831C6CBC</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/vicky13vikas/FloorPlayNew.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>6F868B92-5A3B-4601-8B19-2BF82388A4AD</string>
+	<string>D42CAAF2E72F9443435A0D34DDB5ADEC831C6CBC</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>6F868B92-5A3B-4601-8B19-2BF82388A4AD</string>
 			<key>IDESourceControlWCCName</key>
 			<string>NewGit</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D42CAAF2E72F9443435A0D34DDB5ADEC831C6CBC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SourceCode</string>
 		</dict>
 	</array>
 </dict>

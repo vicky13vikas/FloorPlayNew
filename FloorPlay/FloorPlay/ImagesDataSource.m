@@ -307,7 +307,7 @@
             [result addObject:ob];
             continue;
         }
-        if ([ob.description rangeOfString:selectedString].location != NSNotFound) {
+        if ([ob.imageDescription rangeOfString:selectedString].location != NSNotFound) {
             [result addObject:ob];
             continue;
         }

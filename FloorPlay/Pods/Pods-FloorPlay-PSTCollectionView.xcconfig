@@ -1,1 +1,0 @@
-PODS_FLOORPLAY_PSTCOLLECTIONVIEW_OTHER_LDFLAGS = -framework QuartzCore -framework UIKit

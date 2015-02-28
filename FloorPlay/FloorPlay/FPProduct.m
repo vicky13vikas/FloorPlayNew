@@ -26,7 +26,7 @@
         {
             _productID          = [productEntry valueForKeyPath:@"product_id"];
             _name               = [productEntry valueForKeyPath:@"product_name"];
-            _description        = [productEntry valueForKeyPath:@"desciption"];
+            _productDescription        = [productEntry valueForKeyPath:@"desciption"];
             _folderName         = [productEntry valueForKeyPath:@"folder_name"];
         }
         

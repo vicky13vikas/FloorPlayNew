@@ -12,7 +12,7 @@
 
 @property (nonatomic, retain) NSString* productID;
 @property (nonatomic, retain) NSString* name;
-@property (nonatomic, retain) NSString* description;
+@property (nonatomic, retain) NSString* productDescription;
 @property (nonatomic, retain) NSString* folderName;
 
 @property (nonatomic, retain) NSArray *customProducts;

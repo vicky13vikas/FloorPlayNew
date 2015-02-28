@@ -17,7 +17,7 @@
     {
         _identfier = identifier;
         _name = name;
-        _description = desc;
+        _imageDescription = desc;
         _size = size;
         _color = color;
         _pattern = pattern;

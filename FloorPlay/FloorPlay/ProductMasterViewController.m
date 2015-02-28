@@ -90,7 +90,7 @@
     
     FPProduct *product = _productsList[indexPath.row];
     cell.textLabel.text = product.name;
-    cell.detailTextLabel.text= product.description;
+    cell.detailTextLabel.text= product.productDescription;
     
     return cell;
 }

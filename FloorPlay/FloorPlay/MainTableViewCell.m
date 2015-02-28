@@ -35,8 +35,8 @@
         _lblName.text = _image.name;
     }
     
-    if ([_image.description isKindOfClass:[NSString class]]) {
-        _lblDesc.text = _image.description;
+    if ([_image.imageDescription isKindOfClass:[NSString class]]) {
+        _lblDesc.text = _image.imageDescription;
     }
 }
 

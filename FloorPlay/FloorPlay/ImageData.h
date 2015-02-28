@@ -12,7 +12,7 @@
 
 @property (nonatomic, retain) NSString* identfier;
 @property (nonatomic, retain) NSString* name;
-@property (nonatomic, retain) NSString* description;
+@property (nonatomic, retain) NSString* imageDescription;
 @property (nonatomic, retain) NSString* size;
 @property (nonatomic, retain) NSString* color;
 @property (nonatomic, retain) NSString* pattern;

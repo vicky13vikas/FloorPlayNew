@@ -116,7 +116,7 @@
 
 -(void)setDescription
 {
-    NSString *description = [NSString stringWithFormat:@"Name     : %@\nSize       : %@\nColor     : %@\nPattern   : %@\nPrice      : %@\nMaterial  : %@\nDescription : %@", self.image.name, self.image.size, self.image.color, self.image.pattern, self.image.price, self.image.material, self.image.description];
+    NSString *description = [NSString stringWithFormat:@"Name     : %@\nSize       : %@\nColor     : %@\nPattern   : %@\nPrice      : %@\nMaterial  : %@\nDescription : %@", self.image.name, self.image.size, self.image.color, self.image.pattern, self.image.price, self.image.material, self.image.imageDescription];
     [self.detailTextView setText:description];
 }
 

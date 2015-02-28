@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Vikas kumar. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "FPAppDelegate.h"
 //#import "TestFlight.h"
 
-@implementation AppDelegate
+@implementation FPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

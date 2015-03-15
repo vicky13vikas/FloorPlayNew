@@ -39,7 +39,9 @@
             {
                 if ([img length] > 0)
                 {
-                    [imageArray addObject:img];
+                    NSString *imageURL = [NSString stringWithFormat:@"%@data/customProduct/%@/%@",SERVER_URL, _folderName, img];
+                    
+                    [imageArray addObject:imageURL];
                 }
             }
         }

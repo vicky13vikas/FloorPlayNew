@@ -30,14 +30,15 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    _imagePreview.image = [[ImagesDataSource singleton] getImageAtIndex:0 forImage:self.image];
-    if (_image.name) {
-        _lblName.text = _image.name;
-    }
-    
-    if ([_image.imageDescription isKindOfClass:[NSString class]]) {
-        _lblDesc.text = _image.imageDescription;
-    }
+    [_imagePreview setShowActivityIndicator:YES];
+    [_imagePreview setCrossfadeDuration:0];
+}
+
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.imagePreview.image = nil;
+    self.imagePreview.imageURL = nil;
 }
 
 @end

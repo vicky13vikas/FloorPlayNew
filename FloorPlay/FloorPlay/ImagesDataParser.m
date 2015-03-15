@@ -44,7 +44,8 @@
                 {
                     if ([img length] > 0)
                     {
-                        [imageArray addObject:img];
+                        NSString *imageURL = [NSString stringWithFormat:@"%@data/images/%@",SERVER_URL,img];
+                        [imageArray addObject:imageURL];
                     }
                 }
             }

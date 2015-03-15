@@ -406,7 +406,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faf-Rc-hH3">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faf-Rc-hH3" customClass="AsyncImageView">
                                             <rect key="frame" x="7" y="5" width="116" height="109"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="116" id="M2R-iR-0CI"/>

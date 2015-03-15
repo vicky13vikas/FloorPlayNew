@@ -170,7 +170,17 @@
     {
         image = [imageListToShow objectAtIndex:indexPath.row];
     }
-    cell.image = image;
+
+    cell.imagePreview.imageURL = [NSURL URLWithString:[image.imagesList[0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    if (image.name) {
+        cell.lblName.text = image.name;
+    }
+    
+    if ([image.imageDescription isKindOfClass:[NSString class]]) {
+        cell.lblDesc.text = image.imageDescription;
+    }
+
+    
     if(isEditing)
     {
         cell.showsReorderControl = YES;

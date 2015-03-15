@@ -46,9 +46,6 @@
         
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
-        //Force to read the date as en_US
-        //    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] ];
-        //10:06 AM Thu, Nov 18, 2010
         [dateFormatter setDateFormat:@"h:mm a EEE, MMM d, yyyy"];
         [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
         

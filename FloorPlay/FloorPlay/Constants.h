@@ -33,6 +33,12 @@
 #define kPriceRange @[@"Below 10,000", @"10,001 to 25,000", @"25,001 to 45,000", @"45,001 to 90,000", @"Greater than 90,000"]
 
 
+typedef NS_ENUM(NSInteger, DataSource)
+{
+    DataSourceInventory,
+    DataSourceCustom
+};
+
 typedef enum {
     kCategoryColor = 0,
     kCategorySize = 1,

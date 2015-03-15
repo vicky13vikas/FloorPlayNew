@@ -61,7 +61,7 @@
     imageListToShow = [[ImagesDataSource singleton] objects];
     
     customRows = nil;
-    if(!self.isCustom)
+    if(_datasource == DataSourceInventory)
     {
         _btnShowAll.enabled = YES;
         _btnShowAll.title = @"Reset";
@@ -111,7 +111,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHide) name:UIKeyboardDidHideNotification object:nil];
     
-    if(_isCustom)
+    if(_datasource == DataSourceCustom)
     {
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
 //        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(btnEditTapped:)];
@@ -161,7 +161,7 @@
     MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainTableViewCell" forIndexPath:indexPath];
 
     ImageData *image;
-    if(!isSearchMode && !_isCustom)
+    if(!isSearchMode && _datasource == DataSourceInventory)
     {
         NSNumber *indexFromCustom = (NSNumber*)[customRows objectAtIndex:indexPath.row];
         image = [imageListToShow objectAtIndex:[indexFromCustom integerValue]];
@@ -228,6 +228,7 @@
 
 -(void) writeToFile
 {
+    /*
     NSString *fileName;
     if(_isCustom)
     {
@@ -243,10 +244,12 @@
     NSString *customPlistPath =  [documentsDirectory stringByAppendingPathComponent:fileName];
     
     [customRows writeToFile:customPlistPath atomically:NO];
+     */
 }
 
 - (NSMutableArray*)readFromFile
 {
+    /*
     NSString *fileName;
     if(_isCustom)
     {
@@ -262,6 +265,8 @@
     NSString *customPlistPath =  [documentsDirectory stringByAppendingPathComponent:fileName];
 
     return [NSMutableArray arrayWithContentsOfFile:customPlistPath];
+     */
+    return nil;
 }
 
 #pragma -mark Segue

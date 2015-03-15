@@ -13,61 +13,48 @@
 
 @implementation ImagesDataParser
 
-+ (NSArray*) parseImagesFromData: (NSData*)data andCacheDataSource:(BOOL)toCache
++ (NSArray*) parseImagesFromDict: (NSDictionary*)imagesArray andCacheDataSource:(BOOL)toCache
 {
     NSMutableArray* imagesObjectArray = [NSMutableArray array];
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setTimeStyle:NSDateFormatterFullStyle];
-    //Force to read the date as en_US
-//    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] ];
-	//10:06 AM Thu, Nov 18, 2010
-	[dateFormatter setDateFormat:@"h:mm a EEE, MMM d, yyyy"];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-
-    NSError *error = nil;
-    NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    documentDirPath = [documentDirPath stringByAppendingString:@"/"];
-    documentDirPath = [documentDirPath stringByAppendingString:SAVED_JSON_FILE];
+    [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
     
-    NSArray *imagesArray = [NSArray arrayWithContentsOfFile:documentDirPath];
+    [dateFormatter setDateFormat:@"h:mm a EEE, MMM d, yyyy"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     
-    if(!error)
+    if(imagesArray.count > 0)
     {
-//        NSArray *imagesArray = [response objectForKey:@"image"];
-        if(imagesArray.count > 0)
+        for(id image in imagesArray)
         {
-            for(id image in imagesArray)
+            NSString *imageID = [image objectForKey:@"id"];
+            NSString *imageName = [image objectForKey:@"name"];
+            NSString *imageSize = [image objectForKey:@"size"];
+            NSString *imageDesc = [image objectForKey:@"desc"];
+            NSString *imagepattern = [image objectForKey:@"Pattern"];
+            NSString *imageColor = [image objectForKey:@"color"];
+            NSString *imageMaterial = [image objectForKey:@"material"];
+            NSString *imagePrice = [image objectForKey:@"price"];
+            
+            NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+            for (int i=0; i < RELATIVE_IMAGES_COUNT; i++)
             {
-                NSString *imageID = [image objectForKey:@"id"];
-                NSString *imageName = [image objectForKey:@"name"];
-                NSString *imageSize = [image objectForKey:@"size"];
-                NSString *imageDesc = [image objectForKey:@"desc"];
-                NSString *imagepattern = [image objectForKey:@"Pattern"];
-                NSString *imageColor = [image objectForKey:@"color"];
-                NSString *imageMaterial = [image objectForKey:@"material"];
-                NSString *imagePrice = [image objectForKey:@"price"];
-                
-                NSMutableArray *imageArray = [[NSMutableArray alloc] init];
-                for (int i=0; i < RELATIVE_IMAGES_COUNT; i++)
+                NSString *img = [image objectForKey:[NSString stringWithFormat:@"image%d",i+1]];
+                if(![img isKindOfClass:[NSNull class]])
                 {
-                    NSString *img = [image objectForKey:[NSString stringWithFormat:@"image%d",i+1]];
-                    if(![img isKindOfClass:[NSNull class]])
+                    if ([img length] > 0)
                     {
-                        if ([img length] > 0)
-                        {
-                            [imageArray addObject:img];
-                        }
+                        [imageArray addObject:img];
                     }
                 }
-                
-                NSDate *createdDate = [dateFormatter dateFromString:[image objectForKey:@"created_date"]];
-                
-                ImageData *imageItem = [[ImageData alloc] initWithID:imageID name:imageName description:imageDesc size:imageSize color:imageColor pattern:imagepattern material:imageMaterial price:imagePrice createdDate:createdDate imagesList:imageArray];
-                
-                [imagesObjectArray addObject:imageItem];
-                
             }
+            
+            NSDate *createdDate = [dateFormatter dateFromString:[image objectForKey:@"created_date"]];
+            
+            ImageData *imageItem = [[ImageData alloc] initWithID:imageID name:imageName description:imageDesc size:imageSize color:imageColor pattern:imagepattern material:imageMaterial price:imagePrice createdDate:createdDate imagesList:imageArray];
+            
+            [imagesObjectArray addObject:imageItem];
+            
         }
     }
     if(imagesObjectArray.count > 0 && toCache)

@@ -15,7 +15,7 @@
 @interface MasterViewController : UITableViewController <selectCategoryDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-@property (nonatomic) BOOL isCustom;
+@property (nonatomic) DataSource datasource;
 
 
 @end

@@ -36,15 +36,15 @@
         _objects = [[NSMutableArray alloc] init];
     }
     [_objects removeAllObjects];
-    NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    documentDirPath = [documentDirPath stringByAppendingString:@"/"];
-    documentDirPath = [documentDirPath stringByAppendingString:SAVED_JSON_PRODUCT_MASTER];
+    //    NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    //    documentDirPath = [documentDirPath stringByAppendingString:@"/"];
+    //    documentDirPath = [documentDirPath stringByAppendingString:SAVED_JSON_PRODUCT_MASTER];
+    //
+    //    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:documentDirPath];
     
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:documentDirPath];
-
-    for ( NSArray *productname in dictionary)
+    for ( NSArray *productname in self.dict)
     {
-        FPProduct *product = [[FPProduct alloc] initWithAttributes:[dictionary objectForKey:productname]];
+        FPProduct *product = [[FPProduct alloc] initWithAttributes:[self.dict objectForKey:productname]];
         [_objects addObject:product];
     }
 }

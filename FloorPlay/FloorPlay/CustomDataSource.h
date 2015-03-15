@@ -13,6 +13,7 @@
 
 @property (nonatomic, retain) NSMutableArray *objects;
 
+@property(nonatomic, strong) NSDictionary *dict;
 
 + (instancetype)sharedData;
 

@@ -11,7 +11,6 @@
 
 @interface ImagesDataParser : NSObject
 
-+ (NSArray*) parseImagesFromData: (NSData*)data andCacheDataSource:(BOOL)toCache;
-
++ (NSArray*) parseImagesFromDict: (NSDictionary*)imagesArray andCacheDataSource:(BOOL)toCache;
 
 @end

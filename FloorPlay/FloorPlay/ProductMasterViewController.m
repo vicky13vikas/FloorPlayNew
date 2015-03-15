@@ -97,20 +97,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self dismissViewControllerAnimated:NO completion:^{
-//        FPProduct *product = _productsList[indexPath.row];
-//        
-//        if(_productMasterDelegate && [_productMasterDelegate respondsToSelector:@selector(productMasterController:didSelectProduct:)])
-//        {
-//            [_productMasterDelegate productMasterController:self didSelectProduct:product];
-//        }
-//    }];
-    
     FPProduct *product = _productsList[indexPath.row];
      [[ImagesDataSource singleton] cacheData:[product customProducts]];
     
     MasterViewController *vc= [self.storyboard instantiateViewControllerWithIdentifier:@"MasterViewController"];
-    vc.isCustom = YES;
+    vc.datasource = DataSourceCustom;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -15,6 +15,7 @@
 #import "SelectedCategoryViewController.h"
 #import "MWPhotoBrowser.h"
 #import "AGQuadControlViewController.h"
+#import <AsyncImageView/AsyncImageView.h>
 
 @interface DetailViewController () <selectCategoryDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate>
 {
@@ -25,7 +26,7 @@
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (strong, nonatomic) UIPopoverController *popOverController;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet AsyncImageView *imageView;
 @property (weak, nonatomic) IBOutlet UICollectionView *filmStripCollection;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
 @property (weak, nonatomic) IBOutlet UIButton *btnPrevious;
@@ -60,6 +61,7 @@
     doubleTap.delegate = self;
     [self.scrollView addGestureRecognizer:doubleTap];
     
+    _imageView.crossfadeDuration = 0.0;
     isAppearFirstTime = YES;
 }
 
@@ -89,7 +91,7 @@
     
     [self.navigationController.navigationBar setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     
-    self.imageView.image = [[ImagesDataSource singleton] getImageAtIndex:0 forImage:self.image];
+    self.imageView.imageURL = [NSURL URLWithString:[_image.imagesList[0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     [self.filmStripCollection reloadData];
     [self setDescription];
     
@@ -172,27 +174,16 @@
     if(self.scrollView.zoomScale == 1.0)
     {
         [self.scrollView setZoomScale:2.0];
-        
-//        CGSize size = self.scrollView.contentSize;
-//        CGSize newSize;
-//
-//        newSize.width = size.width * 2;
-//        newSize.height = size.height * 2;
-
-//        self.scrollView.contentSize = newSize;
     }
     else if(self.scrollView.zoomScale == 2.0)
         [self.scrollView setZoomScale:3.0];
     else
         [self.scrollView setZoomScale:4.0];
-    
-    NSLog(@"Image Frama : %@",NSStringFromCGRect(self.imageView.frame));
-    NSLog(@"ContentSize : %@",NSStringFromCGSize(self.scrollView.contentSize));
 }
 
 -(void)updateImage
 {
-    self.imageView.image = [[ImagesDataSource singleton] getImageAtIndex:0 forImage:self.image];
+    self.imageView.imageURL = [NSURL URLWithString:[self.image.imagesList[0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     selectedIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 
     [self.filmStripCollection reloadData];
@@ -225,9 +216,11 @@
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"flimStripCell" forIndexPath:indexPath];
-    UIImageView * imageView = (UIImageView*)[cell viewWithTag:444];
-
-    imageView.image = [[ImagesDataSource singleton] getImageAtIndex:indexPath.row forImage:self.image];
+    AsyncImageView * imageView = (AsyncImageView*)[cell viewWithTag:444];
+    imageView.crossfadeDuration = 0.0;
+    
+    imageView.imageURL = [NSURL URLWithString:[_image.imagesList[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
     cell.backgroundColor = [UIColor whiteColor];
 
     return cell;
@@ -235,7 +228,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-    self.imageView.image = [[ImagesDataSource singleton] getImageAtIndex:indexPath.row forImage:self.image];
+    self.imageView.imageURL = [NSURL URLWithString:[_image.imagesList[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor blueColor];
     self.scrollView.zoomScale = 1.0;
@@ -337,7 +330,7 @@
     
     selectedIndexPath = indexPath;
 
-    self.imageView.image = [[ImagesDataSource singleton] getImageAtIndex:indexPath.row forImage:self.image];
+    self.imageView.imageURL = [NSURL URLWithString:[_image.imagesList[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     if(selectedIndexPath.row <= 0)
     {
         [sender setEnabled:NO];
@@ -362,7 +355,7 @@
     
     selectedIndexPath = indexPath;
     
-    self.imageView.image = [[ImagesDataSource singleton] getImageAtIndex:indexPath.row forImage:self.image];
+    self.imageView.imageURL = [NSURL URLWithString:[_image.imagesList[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     if(selectedIndexPath.row >= self.image.imagesList.count - 1)
     {
         [sender setEnabled:NO];
@@ -379,8 +372,6 @@
 
 - (IBAction)homeButtonTapped:(id)sender
 {
-//    _firstViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"FirstViewController"];
-//    _firstViewController.master = (MasterViewController*)[[self.splitViewController.viewControllers objectAtIndex:0] topViewController];
     [self presentViewController:_firstViewController animated:NO completion:nil];
 }
 
@@ -401,7 +392,7 @@
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     if (index < _image.imagesList.count)
     {
-        MWPhoto *photo = [MWPhoto photoWithImage:[[ImagesDataSource singleton] getImageAtIndex:index forImage:self.image]];
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[_image.imagesList[index] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
         return photo;   
     }
     return nil;

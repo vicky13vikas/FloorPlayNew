@@ -206,8 +206,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MainTableViewCell *cell = (MainTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-    self.detailViewController.image = cell.image;
+    self.detailViewController.image = imageListToShow[indexPath.row];
     [self.detailViewController updateImage];
 }
 

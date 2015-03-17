@@ -64,6 +64,9 @@
 		099FBA9A1967FB5E002D3688 /* btn_Signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA871967FB5E002D3688 /* btn_Signin.png */; };
 		099FBA9B1967FB5E002D3688 /* logo.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA881967FB5E002D3688 /* logo.bmp */; };
 		099FBA9F19680919002D3688 /* FPAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 099FBA9E19680919002D3688 /* FPAFNetworking.m */; };
+		4E6962C51AB8AC3300F796CC /* FBImageData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962C31AB8AC3300F796CC /* FBImageData.xcdatamodeld */; };
+		4E6962CC1AB8AEFA00F796CC /* FPImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962CB1AB8AEFA00F796CC /* FPImageData.m */; };
+		4E6962CF1AB8B12400F796CC /* FBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */; };
 		613D0C985886468185D016EB /* libPods-FloorPlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 107E4B76031F406EAD671FAC /* libPods-FloorPlay.a */; };
 /* End PBXBuildFile section */
 
@@ -166,6 +169,11 @@
 		099FBA9D19680919002D3688 /* FPAFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPAFNetworking.h; sourceTree = "<group>"; };
 		099FBA9E19680919002D3688 /* FPAFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPAFNetworking.m; sourceTree = "<group>"; };
 		107E4B76031F406EAD671FAC /* libPods-FloorPlay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FloorPlay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E6962C41AB8AC3300F796CC /* FBImageData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FBImageData.xcdatamodel; sourceTree = "<group>"; };
+		4E6962CA1AB8AEFA00F796CC /* FPImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPImageData.h; sourceTree = "<group>"; };
+		4E6962CB1AB8AEFA00F796CC /* FPImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPImageData.m; sourceTree = "<group>"; };
+		4E6962CD1AB8B12400F796CC /* FBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBCoreDataManager.h; path = CoreData/FBCoreDataManager.h; sourceTree = "<group>"; };
+		4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBCoreDataManager.m; path = CoreData/FBCoreDataManager.m; sourceTree = "<group>"; };
 		E4F53C9FEA3B32093A3DA3A4 /* Pods-FloorPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloorPlay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FloorPlay/Pods-FloorPlay.debug.xcconfig"; sourceTree = "<group>"; };
 		E945C44CC5D8C9F0777B114B /* Pods-FloorPlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloorPlay.release.xcconfig"; path = "Pods/Target Support Files/Pods-FloorPlay/Pods-FloorPlay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,6 +238,7 @@
 		09022EDF1967E998009A8D7E /* FloorPlay */ = {
 			isa = PBXGroup;
 			children = (
+				4E6962C91AB8AEB700F796CC /* CoreData */,
 				09073DFC1969597D0034D98F /* Models */,
 				09073DF519693A1A0034D98F /* CustomProducts */,
 				099FBA9C196808A2002D3688 /* Services */,
@@ -376,6 +385,18 @@
 				099FBA9E19680919002D3688 /* FPAFNetworking.m */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		4E6962C91AB8AEB700F796CC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4E6962C31AB8AC3300F796CC /* FBImageData.xcdatamodeld */,
+				4E6962CA1AB8AEFA00F796CC /* FPImageData.h */,
+				4E6962CB1AB8AEFA00F796CC /* FPImageData.m */,
+				4E6962CD1AB8B12400F796CC /* FBCoreDataManager.h */,
+				4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		DE3319F9E8C0E20CB299A153 /* Pods */ = {
@@ -541,8 +562,10 @@
 				09073DF819693A560034D98F /* ProductMasterViewController.m in Sources */,
 				09022F3C1967F1BE009A8D7E /* SearchCategoryViewController.m in Sources */,
 				099FBA9F19680919002D3688 /* FPAFNetworking.m in Sources */,
+				4E6962C51AB8AC3300F796CC /* FBImageData.xcdatamodeld in Sources */,
 				09022F381967F1BE009A8D7E /* FPAppDelegate.m in Sources */,
 				09022F431967F1BE009A8D7E /* FullScreenViewController.m in Sources */,
+				4E6962CF1AB8B12400F796CC /* FBCoreDataManager.m in Sources */,
 				09022F441967F1BE009A8D7E /* AGQuadControlViewController.m in Sources */,
 				09073E02196959D40034D98F /* FPProduct.m in Sources */,
 				09022F491967F1BE009A8D7E /* ImageData.m in Sources */,
@@ -564,6 +587,7 @@
 				09022F461967F1BE009A8D7E /* UIImagePickerController+OrientationFix.m in Sources */,
 				09022F511967F758009A8D7E /* StringCategories.m in Sources */,
 				09022F451967F1BE009A8D7E /* UIViewController+OrientationFix.m in Sources */,
+				4E6962CC1AB8AEFA00F796CC /* FPImageData.m in Sources */,
 				09073DFB196949820034D98F /* CustomDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -777,6 +801,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4E6962C31AB8AC3300F796CC /* FBImageData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4E6962C41AB8AC3300F796CC /* FBImageData.xcdatamodel */,
+			);
+			currentVersion = 4E6962C41AB8AC3300F796CC /* FBImageData.xcdatamodel */;
+			path = FBImageData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 09022ECE1967E998009A8D7E /* Project object */;
 }

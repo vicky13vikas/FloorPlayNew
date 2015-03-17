@@ -16,6 +16,7 @@
 #import "MWPhotoBrowser.h"
 #import "AGQuadControlViewController.h"
 #import <AsyncImageView/AsyncImageView.h>
+#import "FBCoreDataManager.h"
 
 @interface DetailViewController () <selectCategoryDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate>
 {
@@ -37,6 +38,7 @@
 - (IBAction)btnNextImage:(id)sender;
 - (IBAction)homeButtonTapped:(id)sender;
 - (IBAction)virtualTryoutClicked:(id)sender;
+- (IBAction)saveOfflineTapped:(id)sender;
 
 @end
 
@@ -382,6 +384,11 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+- (IBAction)saveOfflineTapped:(id)sender
+{
+    [[FBCoreDataManager sharedDataManager] saveImageData:self.image];
+}
+
 
 #pragma mark - MWPhotoBrowserDelegate
 
@@ -397,16 +404,6 @@
     }
     return nil;
 }
-
-//- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
-//    MWPhoto *photo = [self.photos objectAtIndex:index];
-//    MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
-//    return [captionView autorelease];
-//}
-
-//- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
-//    NSLog(@"ACTION!");
-//}
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index
 {

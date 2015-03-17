@@ -151,6 +151,16 @@
                                     <action selector="virtualTryoutClicked:" destination="4" eventType="touchUpInside" id="KTt-ow-hmY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbZ-Cl-M3c">
+                                <rect key="frame" x="404" y="83" width="111" height="30"/>
+                                <color key="backgroundColor" red="7.621079918e-05" green="1" blue="0.048493236000000002" alpha="0.37" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Save Offline">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveOfflineTapped:" destination="4" eventType="touchUpInside" id="C2O-da-dOo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

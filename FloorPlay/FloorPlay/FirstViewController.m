@@ -15,6 +15,7 @@
 #import "FPAFNetworking.h"
 #import "ProductMasterViewController.h"
 #import "CustomDataSource.h"
+#import "FBCoreDataManager.h"
 
 @interface FirstViewController () <ProductMasterDelegate>
 
@@ -92,7 +93,9 @@
 
 - (IBAction)offlineTapped:(id)sender
 {
-    
+    self.imagesList = [[FBCoreDataManager sharedDataManager] getAllOfflineImages];
+//    [[ImagesDataSource singleton] cacheData:self.imagesList];
+    [self dateSourceSelected:nil];
 }
 
 - (IBAction)customTapped:(id)sender

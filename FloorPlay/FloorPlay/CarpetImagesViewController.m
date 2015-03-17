@@ -9,10 +9,11 @@
 #import "CarpetImagesViewController.h"
 #import "ImagesDataSource.h"
 #import "ImageData.h"
+#import <AsyncImageView/AsyncImageView.h>
 
 @interface CarpetImagesViewController ()
 {
-    NSMutableArray *carpetImages;
+    NSMutableArray *carpetImageURLs;
 }
 
 @end
@@ -33,7 +34,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
-    carpetImages = [[NSMutableArray alloc] init];
+    carpetImageURLs = [[NSMutableArray alloc] init];
     [self loadSavedCarpetImages];
 }
 
@@ -42,9 +43,9 @@
     NSArray *array = [[ImagesDataSource singleton] objects];
     for(ImageData *imagedata in  array)
     {
-        UIImage *image = [[ImagesDataSource singleton] getImageFromImageName:[imagedata.imagesList firstObject]];
-        if(image)
-            [carpetImages addObject:image];
+        NSURL *imageURL = [NSURL URLWithString:[[imagedata.imagesList firstObject] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        if(imageURL)
+            [carpetImageURLs addObject:imageURL];
     }
 }
 
@@ -56,7 +57,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return carpetImages.count;
+    return carpetImageURLs.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -64,8 +65,8 @@
     NSString *identifier = @"collectionViewCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     //    cell.backgroundColor = [UIColor whiteColor];
-    UIImageView *imageView = (UIImageView*)[cell viewWithTag:555];
-    imageView.image = carpetImages[indexPath.row];
+    AsyncImageView *imageView = (AsyncImageView*)[cell viewWithTag:555];
+    imageView.imageURL = carpetImageURLs[indexPath.row];
     
     return cell;
 }
@@ -74,7 +75,7 @@
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     //    cell.backgroundColor = [UIColor blueColor];
-    UIImage *selectedImage = [(UIImageView*)[cell viewWithTag:555] image];
+    UIImage *selectedImage = [(AsyncImageView*)[cell viewWithTag:555] image];
     
     [_delegate carpetImageDidChange:selectedImage];
 }

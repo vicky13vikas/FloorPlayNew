@@ -169,7 +169,7 @@
     
     NSMutableArray *requestArray = [[NSMutableArray alloc] init];
     
-    for(NSString *imageURL in imagedata.imagesList)
+    for(NSString *imageURL in imagedata.imageURLs)
     {
         NSURL *url = imageURL;
         

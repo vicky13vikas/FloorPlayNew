@@ -62,7 +62,7 @@
                                                 material:[productEntry valueForKeyPath:@"material"]
                                                    price:[productEntry valueForKeyPath:@"price"]
                                              createdDate:createdDate
-                                              imagesList:imageArray];
+                                              imagesURLs:imageArray];
         
         [temp addObject:image];
         

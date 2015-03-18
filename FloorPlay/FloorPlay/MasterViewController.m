@@ -171,7 +171,7 @@
         image = [imageListToShow objectAtIndex:indexPath.row];
     }
 
-    cell.imagePreview.imageURL = image.imagesList[0];
+    cell.imagePreview.imageURL = image.imageURLs[0];
     if (image.name) {
         cell.lblName.text = image.name;
     }

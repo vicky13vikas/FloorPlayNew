@@ -10,7 +10,7 @@
 
 @implementation ImageData
 
--(id)initWithID:(NSString*)identifier name:(NSString*)name description:(NSString*)desc size:(NSString*)size color:(NSString*)color pattern:(NSString*)pattern material:(NSString*)material price:(NSString*)price createdDate:(NSDate*)date imagesList:(NSArray*)images;
+-(id)initWithID:(NSString*)identifier name:(NSString*)name description:(NSString*)desc size:(NSString*)size color:(NSString*)color pattern:(NSString*)pattern material:(NSString*)material price:(NSString*)price createdDate:(NSDate*)date imagesURLs:(NSArray *)images
 {
     self = [super init];
     if(self)
@@ -24,7 +24,7 @@
         _material = material;
         _price = price;
         _createddate = date;
-        _imagesList = [images copy];
+        _imageURLs = [images copy];
     }
     return self;
 }

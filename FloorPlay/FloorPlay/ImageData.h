@@ -20,10 +20,10 @@
 @property (nonatomic, retain) NSString* material;
 @property (nonatomic, retain) NSDate* createddate;
 
-@property (nonatomic, retain) NSArray *imagesList;
+@property (nonatomic, retain) NSArray *imageURLs;
 
 -(NSString*)pathToSaveOffline;
 
--(id)initWithID:(NSString*)identifier name:(NSString*)name description:(NSString*)desc size:(NSString*)size color:(NSString*)color pattern:(NSString*)pattern material:(NSString*)material price:(NSString*)price createdDate:(NSDate*)date imagesList:(NSArray*)images;
+-(id)initWithID:(NSString*)identifier name:(NSString*)name description:(NSString*)desc size:(NSString*)size color:(NSString*)color pattern:(NSString*)pattern material:(NSString*)material price:(NSString*)price createdDate:(NSDate*)date imagesURLs:(NSArray*)images;
 
 @end

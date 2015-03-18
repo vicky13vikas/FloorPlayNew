@@ -53,7 +53,7 @@
             
             NSDate *createdDate = [dateFormatter dateFromString:[image objectForKey:@"created_date"]];
             
-            ImageData *imageItem = [[ImageData alloc] initWithID:imageID name:imageName description:imageDesc size:imageSize color:imageColor pattern:imagepattern material:imageMaterial price:imagePrice createdDate:createdDate imagesList:imageURLs];
+            ImageData *imageItem = [[ImageData alloc] initWithID:imageID name:imageName description:imageDesc size:imageSize color:imageColor pattern:imagepattern material:imageMaterial price:imagePrice createdDate:createdDate imagesURLs:imageURLs];
             
             [imagesObjectArray addObject:imageItem];
             

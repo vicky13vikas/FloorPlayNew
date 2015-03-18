@@ -43,7 +43,7 @@
     NSArray *array = [[ImagesDataSource singleton] objects];
     for(ImageData *imagedata in  array)
     {
-        NSURL *imageURL = [imagedata.imagesList firstObject];
+        NSURL *imageURL = [imagedata.imageURLs firstObject];
         if(imageURL)
             [carpetImageURLs addObject:imageURL];
     }

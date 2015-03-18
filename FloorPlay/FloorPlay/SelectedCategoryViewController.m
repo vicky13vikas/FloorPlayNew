@@ -119,6 +119,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+//    Crash
     NSString *selectedString = [self.itemsInCategory objectAtIndex:indexPath.row];
     [self.materTableDelegate selectionDoneInCategory:self.categoryType withString:selectedString];
     [self.detailControllerDelegate selectionDoneInCategory:self.categoryType withString:selectedString];

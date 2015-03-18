@@ -39,9 +39,9 @@
     self.material = data.material;
     self.createddate = data.createddate;
     
-    for (int i = 0; i<data.imagesList.count ; i++)
+    for (int i = 0; i<data.imageURLs.count ; i++)
     {
-        NSString *imageURL = [data.imagesList objectAtIndex:i];
+        NSString *imageURL = [data.imageURLs objectAtIndex:i];
         
         NSString *propertyName = [NSString stringWithFormat:@"imageURL%d",i+1];
         objc_property_t property = class_getProperty([self class], [propertyName UTF8String]);
@@ -64,7 +64,7 @@
                                             material:self.material
                                                price:self.price
                                          createdDate:self.createddate
-                                          imagesList:nil];
+                                          imagesURLs:nil];
     
     NSMutableArray *imageURLList = [[NSMutableArray alloc] init];
     NSString *folderPath = [image pathToSaveOffline];
@@ -84,7 +84,7 @@
         }
     }
 
-    image.imagesList = imageURLList;
+    image.imageURLs = imageURLList;
     
     return image;
 }

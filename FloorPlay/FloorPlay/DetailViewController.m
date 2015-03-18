@@ -94,7 +94,7 @@
     
     [self.navigationController.navigationBar setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     
-    self.imageView.imageURL = _image.imagesList[0];
+    self.imageView.imageURL = _image.imageURLs[0];
     [self.filmStripCollection reloadData];
     [self setDescription];
     
@@ -109,7 +109,7 @@
     {
         [_btnPrevious setEnabled:NO];
     }
-    if(self.image.imagesList.count > 1)
+    if(self.image.imageURLs.count > 1)
     {
         _btnNext.enabled = YES;
     }
@@ -186,7 +186,7 @@
 
 -(void)updateImage
 {
-    self.imageView.imageURL = self.image.imagesList[0];
+    self.imageView.imageURL = self.image.imageURLs[0];
     selectedIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 
     [self.filmStripCollection reloadData];
@@ -199,7 +199,7 @@
     {
         [_btnPrevious setEnabled:NO];
     }
-    if(self.image.imagesList.count > 1)
+    if(self.image.imageURLs.count > 1)
     {
         _btnNext.enabled = YES;
     }
@@ -213,7 +213,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.image.imagesList.count;
+    return self.image.imageURLs.count;
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -224,7 +224,7 @@
     imageView.imageURL = nil;
     imageView.crossfadeDuration = 0.0;
     
-    imageView.imageURL = _image.imagesList[indexPath.row];
+    imageView.imageURL = _image.imageURLs[indexPath.row];
     
     cell.backgroundColor = [UIColor whiteColor];
 
@@ -233,7 +233,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-    self.imageView.imageURL = _image.imagesList[indexPath.row];
+    self.imageView.imageURL = _image.imageURLs[indexPath.row];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor blueColor];
     self.scrollView.zoomScale = 1.0;
@@ -335,12 +335,12 @@
     
     selectedIndexPath = indexPath;
 
-    self.imageView.imageURL = _image.imagesList[indexPath.row];
+    self.imageView.imageURL = _image.imageURLs[indexPath.row];
     if(selectedIndexPath.row <= 0)
     {
         [sender setEnabled:NO];
     }
-    if(self.image.imagesList.count > 1)
+    if(self.image.imageURLs.count > 1)
     {
         _btnNext.enabled = YES;
     }
@@ -360,12 +360,12 @@
     
     selectedIndexPath = indexPath;
     
-    self.imageView.imageURL = _image.imagesList[indexPath.row];
-    if(selectedIndexPath.row >= self.image.imagesList.count - 1)
+    self.imageView.imageURL = _image.imageURLs[indexPath.row];
+    if(selectedIndexPath.row >= self.image.imageURLs.count - 1)
     {
         [sender setEnabled:NO];
     }
-    if(self.image.imagesList.count > 1)
+    if(self.image.imageURLs.count > 1)
     {
         _btnPrevious.enabled = YES;
     }
@@ -400,13 +400,13 @@
 #pragma mark - MWPhotoBrowserDelegate
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return _image.imagesList.count;
+    return _image.imageURLs.count;
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (index < _image.imagesList.count)
+    if (index < _image.imageURLs.count)
     {
-        MWPhoto *photo = [MWPhoto photoWithURL:_image.imagesList[index]];
+        MWPhoto *photo = [MWPhoto photoWithURL:_image.imageURLs[index]];
         return photo;   
     }
     return nil;

@@ -102,8 +102,8 @@
             NSString *docDirPath = [dirPathSearch objectAtIndex:0];
             NSString *dirPath = [docDirPath stringByAppendingPathComponent:@"Images/"];
             NSString *filePath;
-            if(imageItem.imagesList.count > 0)
-                filePath = [dirPath stringByAppendingPathComponent:[imageItem.imagesList objectAtIndex:index]];
+            if(imageItem.imageURLs.count > 0)
+                filePath = [dirPath stringByAppendingPathComponent:[imageItem.imageURLs objectAtIndex:index]];
             
             imageToReturn = [UIImage imageWithContentsOfFile:filePath];
         }

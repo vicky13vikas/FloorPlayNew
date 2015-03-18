@@ -17,6 +17,7 @@
 #import "AGQuadControlViewController.h"
 #import <AsyncImageView/AsyncImageView.h>
 #import "FBCoreDataManager.h"
+#import "UIViewControllerCategories.h"
 
 @interface DetailViewController () <selectCategoryDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate>
 {
@@ -93,7 +94,7 @@
     
     [self.navigationController.navigationBar setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     
-    self.imageView.imageURL = [NSURL URLWithString:[_image.imagesList[0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    self.imageView.imageURL = _image.imagesList[0];
     [self.filmStripCollection reloadData];
     [self setDescription];
     
@@ -185,7 +186,7 @@
 
 -(void)updateImage
 {
-    self.imageView.imageURL = [NSURL URLWithString:[self.image.imagesList[0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    self.imageView.imageURL = self.image.imagesList[0];
     selectedIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 
     [self.filmStripCollection reloadData];
@@ -219,9 +220,11 @@
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"flimStripCell" forIndexPath:indexPath];
     AsyncImageView * imageView = (AsyncImageView*)[cell viewWithTag:444];
+    imageView.image = nil;
+    imageView.imageURL = nil;
     imageView.crossfadeDuration = 0.0;
     
-    imageView.imageURL = [NSURL URLWithString:[_image.imagesList[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    imageView.imageURL = _image.imagesList[indexPath.row];
     
     cell.backgroundColor = [UIColor whiteColor];
 
@@ -230,7 +233,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-    self.imageView.imageURL = [NSURL URLWithString:[_image.imagesList[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    self.imageView.imageURL = _image.imagesList[indexPath.row];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor blueColor];
     self.scrollView.zoomScale = 1.0;
@@ -332,7 +335,7 @@
     
     selectedIndexPath = indexPath;
 
-    self.imageView.imageURL = [NSURL URLWithString:[_image.imagesList[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    self.imageView.imageURL = _image.imagesList[indexPath.row];
     if(selectedIndexPath.row <= 0)
     {
         [sender setEnabled:NO];
@@ -357,7 +360,7 @@
     
     selectedIndexPath = indexPath;
     
-    self.imageView.imageURL = [NSURL URLWithString:[_image.imagesList[indexPath.row] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    self.imageView.imageURL = _image.imagesList[indexPath.row];
     if(selectedIndexPath.row >= self.image.imagesList.count - 1)
     {
         [sender setEnabled:NO];
@@ -386,7 +389,11 @@
 
 - (IBAction)saveOfflineTapped:(id)sender
 {
-    [[FBCoreDataManager sharedDataManager] saveImageData:self.image];
+    [self showLoadingScreenWithMessage:@"Saving Images..."];
+    [[FBCoreDataManager sharedDataManager] saveImageData:self.image withCompletionHandler:^(bool success) {
+        if(success)
+            [self hideLoadingScreen];
+    }];
 }
 
 
@@ -399,7 +406,7 @@
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     if (index < _image.imagesList.count)
     {
-        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:[_image.imagesList[index] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+        MWPhoto *photo = [MWPhoto photoWithURL:_image.imagesList[index]];
         return photo;   
     }
     return nil;

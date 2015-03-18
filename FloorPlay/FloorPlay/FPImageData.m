@@ -8,6 +8,7 @@
 
 #import "FPImageData.h"
 #import <objc/runtime.h>
+#import "Constants.h"
 
 
 @implementation FPImageData
@@ -37,17 +38,55 @@
     self.price = data.price;
     self.material = data.material;
     self.createddate = data.createddate;
+    
     for (int i = 0; i<data.imagesList.count ; i++)
     {
         NSString *imageURL = [data.imagesList objectAtIndex:i];
+        
         NSString *propertyName = [NSString stringWithFormat:@"imageURL%d",i+1];
         objc_property_t property = class_getProperty([self class], [propertyName UTF8String]);
         if(property)
         {
-            [self setValue:imageURL forKey:propertyName];
+            [self setValue:[imageURL lastPathComponent] forKey:propertyName];
         }
     }
   
+}
+
+- (ImageData*)getImageData
+{
+    ImageData *image = [[ImageData alloc] initWithID:self.identfier
+                                                name:self.name
+                                         description:self.imageDescription
+                                                size:self.size
+                                               color:self.color
+                                             pattern:self.pattern
+                                            material:self.material
+                                               price:self.price
+                                         createdDate:self.createddate
+                                          imagesList:nil];
+    
+    NSMutableArray *imageURLList = [[NSMutableArray alloc] init];
+    NSString *folderPath = [image pathToSaveOffline];
+    for (int i = 0; i < RELATIVE_IMAGES_COUNT ; i++)
+    {
+        NSString *propertyName = [NSString stringWithFormat:@"imageURL%d",i+1];
+        objc_property_t property = class_getProperty([self class], [propertyName UTF8String]);
+        if(property)
+        {
+            NSString *imageLastPathComponent = [self valueForKey:propertyName];
+            if(imageLastPathComponent)
+            {
+                NSString* constPath = [folderPath stringByAppendingPathComponent:imageLastPathComponent];
+                NSURL *imageURL = [NSURL fileURLWithPath:constPath];
+                [imageURLList addObject:imageURL];
+            }
+        }
+    }
+
+    image.imagesList = imageURLList;
+    
+    return image;
 }
 
 @end

@@ -36,7 +36,7 @@
             NSString *imageMaterial = [image objectForKey:@"material"];
             NSString *imagePrice = [image objectForKey:@"price"];
             
-            NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+            NSMutableArray *imageURLs = [[NSMutableArray alloc] init];
             for (int i=0; i < RELATIVE_IMAGES_COUNT; i++)
             {
                 NSString *img = [image objectForKey:[NSString stringWithFormat:@"image%d",i+1]];
@@ -44,15 +44,16 @@
                 {
                     if ([img length] > 0)
                     {
-                        NSString *imageURL = [NSString stringWithFormat:@"%@data/images/%@",SERVER_URL,img];
-                        [imageArray addObject:imageURL];
+                        NSString *imageString = [NSString stringWithFormat:@"%@data/images/%@",SERVER_URL,img];
+                        NSURL *imageURL = [NSURL URLWithString:[imageString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                        [imageURLs addObject:imageURL];
                     }
                 }
             }
             
             NSDate *createdDate = [dateFormatter dateFromString:[image objectForKey:@"created_date"]];
             
-            ImageData *imageItem = [[ImageData alloc] initWithID:imageID name:imageName description:imageDesc size:imageSize color:imageColor pattern:imagepattern material:imageMaterial price:imagePrice createdDate:createdDate imagesList:imageArray];
+            ImageData *imageItem = [[ImageData alloc] initWithID:imageID name:imageName description:imageDesc size:imageSize color:imageColor pattern:imagepattern material:imageMaterial price:imagePrice createdDate:createdDate imagesList:imageURLs];
             
             [imagesObjectArray addObject:imageItem];
             

@@ -22,7 +22,7 @@
 
 @property (nonatomic, retain) NSArray *imagesList;
 
-
+-(NSString*)pathToSaveOffline;
 
 -(id)initWithID:(NSString*)identifier name:(NSString*)name description:(NSString*)desc size:(NSString*)size color:(NSString*)color pattern:(NSString*)pattern material:(NSString*)material price:(NSString*)price createdDate:(NSDate*)date imagesList:(NSArray*)images;
 

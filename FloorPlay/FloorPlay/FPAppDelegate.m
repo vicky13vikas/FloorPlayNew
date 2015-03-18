@@ -7,7 +7,7 @@
 //
 
 #import "FPAppDelegate.h"
-//#import "TestFlight.h"
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 
 @implementation FPAppDelegate
 
@@ -23,6 +23,15 @@
 //    [TestFlight takeOff:@"2405de51-afe8-4591-8bd4-fa9243dc636c"];
     
     [[FloorPlayServices singleton] startApplication];
+    
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
+     {
+         if(status == AFNetworkReachabilityStatusUnknown || status == AFNetworkReachabilityStatusNotReachable)
+         {
+             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"No Internet Connection", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+         }
+     }];
 
     return YES;
 }

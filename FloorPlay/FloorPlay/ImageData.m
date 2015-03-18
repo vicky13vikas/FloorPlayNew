@@ -39,4 +39,27 @@
     return [UIImage imageWithContentsOfFile:filePath];
 }
 
+-(NSString*)pathToSaveOffline
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSMutableString *dataPath = (NSMutableString *)[documentsDirectory stringByAppendingPathComponent:self.identfier];
+    
+    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+    {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error])
+        {
+            return nil;
+        }
+        else
+        {
+            return dataPath;
+        }
+    }
+    else
+        return dataPath;
+    return nil;
+}
+
 @end

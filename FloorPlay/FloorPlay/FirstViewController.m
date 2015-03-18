@@ -22,7 +22,7 @@
 @property (nonatomic) NSInteger imageDownloadCount;
 @property (nonatomic) DataSource dataSource;
 
-@property (nonatomic, retain) NSMutableArray *imagesList;
+@property (nonatomic, retain) NSArray *imagesList;
 @property (nonatomic, retain) NSMutableArray *bgImagesList;
 
 - (IBAction)dateSourceSelected:(id)sender;
@@ -94,7 +94,7 @@
 - (IBAction)offlineTapped:(id)sender
 {
     self.imagesList = [[FBCoreDataManager sharedDataManager] getAllOfflineImages];
-//    [[ImagesDataSource singleton] cacheData:self.imagesList];
+    [[ImagesDataSource singleton] cacheData:self.imagesList];
     [self dateSourceSelected:nil];
 }
 
@@ -124,7 +124,7 @@
     [client GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject)
      {
          if(_dataSource == DataSourceInventory)
-            self.imagesList = [[NSMutableArray alloc] initWithArray:[ImagesDataParser parseImagesFromDict:(NSDictionary*)responseObject andCacheDataSource:YES]];
+            self.imagesList = [[NSArray alloc] initWithArray:[ImagesDataParser parseImagesFromDict:(NSDictionary*)responseObject andCacheDataSource:YES]];
          else
              [[CustomDataSource sharedData] setDict:(NSDictionary*)responseObject];
 

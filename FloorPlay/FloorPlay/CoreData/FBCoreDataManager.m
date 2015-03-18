@@ -7,13 +7,15 @@
 //
 
 #import "FBCoreDataManager.h"
+#import <AsyncImageView/AsyncImageView.h>
+#import <AFHTTPRequestOperation.h>
 
 @implementation FBCoreDataManager
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
+@synthesize saveCompletion = _saveCompletion;
 
 +(instancetype)sharedDataManager
 {
@@ -124,11 +126,17 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FPImageData"];
     [fetchRequest setReturnsObjectsAsFaults:NO];
     NSArray *images = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    return images;
+    NSMutableArray *imageDataList = [[NSMutableArray alloc] init];
+    for(FPImageData *imageData in images)
+    {
+        [imageDataList addObject:[imageData getImageData]];
+    }
+    return imageDataList;
 }
 
-- (BOOL)saveImageData:(ImageData *)imageData
+- (void)saveImageData:(ImageData *)imageData withCompletionHandler:(SaveCompletion)completion;
 {
+    _saveCompletion = completion;
     BOOL status = NO;
     NSManagedObjectContext *context = [self managedObjectContext];
     
@@ -142,10 +150,57 @@
     if (YES == [context save:&error])
     {
         status = YES;
+        [self saveImageToDocuments:imageData];
+    }
+    else
+    {
+        _saveCompletion(NO);
     }
     
-    return status;
+}
 
+-(void)saveImageToDocuments:(ImageData*)imagedata
+{
+    NSString *dataPath = [imagedata pathToSaveOffline];
+    if(!dataPath)
+    {
+        _saveCompletion(NO);
+    }
+    
+    NSMutableArray *requestArray = [[NSMutableArray alloc] init];
+    
+    for(NSString *imageURL in imagedata.imagesList)
+    {
+        NSURL *url = imageURL;
+        
+        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:url]];
+        op.responseSerializer = [AFImageResponseSerializer serializer];
+        
+        NSString* constPath = [dataPath stringByAppendingPathComponent:[imageURL lastPathComponent]];
+        
+        op.outputStream = [NSOutputStream outputStreamToFileAtPath:constPath append:NO];
+        op.queuePriority = NSOperationQueuePriorityLow;
+        
+        [op setDownloadProgressBlock:^(NSUInteger bytesRead, NSInteger totalBytesRead, NSInteger totalBytesExpectedToRead) {
+            
+        }];
+        
+        op.completionBlock = ^{
+            
+            //do whatever you want with the downloaded photo, it is stored in the path you create in constPath
+        };
+        [requestArray addObject:op];
+    }
+    
+    NSArray *batches = [AFURLConnectionOperation batchOfRequestOperations:requestArray
+                                                            progressBlock:^(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations) {
+                                                                
+                                                                
+    } completionBlock:^(NSArray *operations) {
+        _saveCompletion(YES);
+    }];
+    
+    [[NSOperationQueue mainQueue] addOperations:batches waitUntilFinished:NO];
 }
 
 @end

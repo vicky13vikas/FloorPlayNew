@@ -28,5 +28,6 @@
 @property (nonatomic, retain) NSString * imageURL3;
 
 - (void)setDataFromImageData:(ImageData*)data;
+- (ImageData*)getImageData;
 
 @end

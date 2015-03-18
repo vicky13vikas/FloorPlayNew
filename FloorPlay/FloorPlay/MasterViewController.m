@@ -171,7 +171,7 @@
         image = [imageListToShow objectAtIndex:indexPath.row];
     }
 
-    cell.imagePreview.imageURL = [NSURL URLWithString:[image.imagesList[0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    cell.imagePreview.imageURL = image.imagesList[0];
     if (image.name) {
         cell.lblName.text = image.name;
     }

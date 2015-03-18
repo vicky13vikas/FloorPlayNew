@@ -17,15 +17,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[[self class] alloc] initWithBaseURL:[NSURL URLWithString:SERVER_URL]];
-        
-        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
-         {
-             if(status == AFNetworkReachabilityStatusUnknown || status == AFNetworkReachabilityStatusNotReachable)
-             {
-                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"No_Internet", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-             }
-         }];
-    });
+        });
     return sharedInstance;
     
 }

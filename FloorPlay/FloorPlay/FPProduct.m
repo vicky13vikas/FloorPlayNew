@@ -31,7 +31,7 @@
         }
         
         
-        NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+        NSMutableArray *imageURLs = [[NSMutableArray alloc] init];
         for (int i=0; i < RELATIVE_IMAGES_COUNT; i++)
         {
             NSString *img = [productEntry objectForKey:[NSString stringWithFormat:@"image%d",i+1]];
@@ -39,9 +39,9 @@
             {
                 if ([img length] > 0)
                 {
-                    NSString *imageURL = [NSString stringWithFormat:@"%@data/customProduct/%@/%@",SERVER_URL, _folderName, img];
-                    
-                    [imageArray addObject:imageURL];
+                    NSString *imageString = [NSString stringWithFormat:@"%@data/customProduct/%@/%@",SERVER_URL, _folderName, img];
+                    NSURL *imageURL = [NSURL URLWithString:[imageString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                    [imageURLs addObject:imageURL];
                 }
             }
         }
@@ -62,7 +62,7 @@
                                                 material:[productEntry valueForKeyPath:@"material"]
                                                    price:[productEntry valueForKeyPath:@"price"]
                                              createdDate:createdDate
-                                              imagesURLs:imageArray];
+                                              imagesURLs:imageURLs];
         
         [temp addObject:image];
         

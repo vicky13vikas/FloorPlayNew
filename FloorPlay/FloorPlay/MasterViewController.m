@@ -11,11 +11,12 @@
 #import "UIImageCategories.h"
 #import "ImagesDataSource.h"
 #import "MainTableViewCell.h"
+#import "FBCoreDataManager.h"
 
 @interface MasterViewController () <UISearchBarDelegate>
 {
     NSMutableArray *_objects;
-    NSArray *imageListToShow;
+    NSMutableArray *imageListToShow;
     BOOL isEditing;
     BOOL isSearchMode;
 }
@@ -57,6 +58,8 @@
     imageListToShow = [[ImagesDataSource singleton] objects];
     
     [self.navigationItem setLeftBarButtonItem:nil];
+    isEditing = NO;
+    [[self tableView] setEditing:NO animated:YES];
 
     if(_datasource == DataSourceCustom)
     {
@@ -182,7 +185,8 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-//    [customRows exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+    [imageListToShow exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+    [[FBCoreDataManager sharedDataManager] swapImageAtIndex:sourceIndexPath.row+1 withImageAtIndex:destinationIndexPath.row+1];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{

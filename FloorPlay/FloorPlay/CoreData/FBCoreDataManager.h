@@ -28,5 +28,6 @@ typedef void (^SaveCompletion) (bool success);
 
 - (NSArray *)getAllOfflineImages;
 
+- (void)swapImageAtIndex:(NSUInteger)source withImageAtIndex:(NSUInteger)dest;
 
 @end

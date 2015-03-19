@@ -65,8 +65,8 @@
 		099FBA9B1967FB5E002D3688 /* logo.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA881967FB5E002D3688 /* logo.bmp */; };
 		099FBA9F19680919002D3688 /* FPAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 099FBA9E19680919002D3688 /* FPAFNetworking.m */; };
 		4E6962C51AB8AC3300F796CC /* FBImageData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962C31AB8AC3300F796CC /* FBImageData.xcdatamodeld */; };
-		4E6962CC1AB8AEFA00F796CC /* FPImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962CB1AB8AEFA00F796CC /* FPImageData.m */; };
 		4E6962CF1AB8B12400F796CC /* FBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */; };
+		4ED515A21ABB5ECA00EBC8BC /* FPImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED515A11ABB5ECA00EBC8BC /* FPImageData.m */; };
 		613D0C985886468185D016EB /* libPods-FloorPlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 107E4B76031F406EAD671FAC /* libPods-FloorPlay.a */; };
 /* End PBXBuildFile section */
 
@@ -170,10 +170,10 @@
 		099FBA9E19680919002D3688 /* FPAFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPAFNetworking.m; sourceTree = "<group>"; };
 		107E4B76031F406EAD671FAC /* libPods-FloorPlay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FloorPlay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E6962C41AB8AC3300F796CC /* FBImageData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FBImageData.xcdatamodel; sourceTree = "<group>"; };
-		4E6962CA1AB8AEFA00F796CC /* FPImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPImageData.h; sourceTree = "<group>"; };
-		4E6962CB1AB8AEFA00F796CC /* FPImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPImageData.m; sourceTree = "<group>"; };
 		4E6962CD1AB8B12400F796CC /* FBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBCoreDataManager.h; path = CoreData/FBCoreDataManager.h; sourceTree = "<group>"; };
 		4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBCoreDataManager.m; path = CoreData/FBCoreDataManager.m; sourceTree = "<group>"; };
+		4ED515A01ABB5ECA00EBC8BC /* FPImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPImageData.h; sourceTree = "<group>"; };
+		4ED515A11ABB5ECA00EBC8BC /* FPImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPImageData.m; sourceTree = "<group>"; };
 		E4F53C9FEA3B32093A3DA3A4 /* Pods-FloorPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloorPlay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FloorPlay/Pods-FloorPlay.debug.xcconfig"; sourceTree = "<group>"; };
 		E945C44CC5D8C9F0777B114B /* Pods-FloorPlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloorPlay.release.xcconfig"; path = "Pods/Target Support Files/Pods-FloorPlay/Pods-FloorPlay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -391,8 +391,8 @@
 			isa = PBXGroup;
 			children = (
 				4E6962C31AB8AC3300F796CC /* FBImageData.xcdatamodeld */,
-				4E6962CA1AB8AEFA00F796CC /* FPImageData.h */,
-				4E6962CB1AB8AEFA00F796CC /* FPImageData.m */,
+				4ED515A01ABB5ECA00EBC8BC /* FPImageData.h */,
+				4ED515A11ABB5ECA00EBC8BC /* FPImageData.m */,
 				4E6962CD1AB8B12400F796CC /* FBCoreDataManager.h */,
 				4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */,
 			);
@@ -586,8 +586,8 @@
 				09022EE61967E998009A8D7E /* main.m in Sources */,
 				09022F461967F1BE009A8D7E /* UIImagePickerController+OrientationFix.m in Sources */,
 				09022F511967F758009A8D7E /* StringCategories.m in Sources */,
+				4ED515A21ABB5ECA00EBC8BC /* FPImageData.m in Sources */,
 				09022F451967F1BE009A8D7E /* UIViewController+OrientationFix.m in Sources */,
-				4E6962CC1AB8AEFA00F796CC /* FPImageData.m in Sources */,
 				09073DFB196949820034D98F /* CustomDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

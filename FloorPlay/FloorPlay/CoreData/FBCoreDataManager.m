@@ -125,6 +125,10 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FPImageData"];
     [fetchRequest setReturnsObjectsAsFaults:NO];
+    
+    NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"serailNumber" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortByName]];
+    
     NSArray *images = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     NSMutableArray *imageDataList = [[NSMutableArray alloc] init];
     for(FPImageData *imageData in images)
@@ -132,6 +136,16 @@
         [imageDataList addObject:[imageData getImageData]];
     }
     return imageDataList;
+}
+
+-(NSUInteger)getCountOfOfflineImage
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FPImageData"];
+   
+    NSError *err;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&err];
+
+    return count;
 }
 
 - (void)saveImageData:(ImageData *)imageData withCompletionHandler:(SaveCompletion)completion;
@@ -145,6 +159,7 @@
     NSError *error = nil;
     
     [image setDataFromImageData:imageData];
+    image.serailNumber = [NSNumber numberWithUnsignedInteger:[self getCountOfOfflineImage]];
     
     // Save the object to persistent store
     if (YES == [context save:&error])
@@ -169,7 +184,7 @@
     
     NSMutableArray *requestArray = [[NSMutableArray alloc] init];
     
-    for(NSString *imageURL in imagedata.imageURLs)
+    for(NSURL *imageURL in imagedata.imageURLs)
     {
         NSURL *url = imageURL;
         
@@ -201,6 +216,28 @@
     }];
     
     [[NSOperationQueue mainQueue] addOperations:batches waitUntilFinished:NO];
+}
+
+- (void)swapImageAtIndex:(NSUInteger)source withImageAtIndex:(NSUInteger)dest
+{
+    NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"FPImageData"];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"serailNumber == %@ OR serailNumber == %@",
+                            [NSNumber numberWithUnsignedInteger:source],
+                            [NSNumber numberWithUnsignedInteger:dest]];
+    
+    fetchRequest.predicate=predicate;
+    NSArray *list = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    FPImageData *firstImage = [list firstObject];
+    FPImageData *secondImage = [list lastObject];
+    
+    NSNumber *temp = firstImage.serailNumber;
+    firstImage.serailNumber = secondImage.serailNumber;
+    secondImage.serailNumber = temp;
+    
+    [self.managedObjectContext save:nil];
 }
 
 @end

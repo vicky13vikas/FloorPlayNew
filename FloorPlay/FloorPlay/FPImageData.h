@@ -22,10 +22,11 @@
 @property (nonatomic, retain) NSString * price;
 @property (nonatomic, retain) NSString * material;
 @property (nonatomic, retain) NSDate * createddate;
+@property (nonatomic, retain) NSNumber * serailNumber;
 @property (nonatomic, retain) NSString * imageURL1;
 @property (nonatomic, retain) NSString * imageURL2;
-@property (nonatomic, retain) NSString * imageURL4;
 @property (nonatomic, retain) NSString * imageURL3;
+@property (nonatomic, retain) NSString * imageURL4;
 
 - (void)setDataFromImageData:(ImageData*)data;
 - (ImageData*)getImageData;

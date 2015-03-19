@@ -22,10 +22,11 @@
 @dynamic price;
 @dynamic material;
 @dynamic createddate;
+@dynamic serailNumber;
 @dynamic imageURL1;
 @dynamic imageURL2;
-@dynamic imageURL4;
 @dynamic imageURL3;
+@dynamic imageURL4;
 
 - (void)setDataFromImageData:(ImageData*)data
 {

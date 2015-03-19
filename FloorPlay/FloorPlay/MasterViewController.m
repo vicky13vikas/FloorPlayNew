@@ -17,8 +17,6 @@
     NSMutableArray *_objects;
     NSArray *imageListToShow;
     BOOL isEditing;
-    NSMutableArray *customRows;
-    
     BOOL isSearchMode;
 }
 
@@ -40,8 +38,9 @@
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
     
-    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor]}];
+
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     [super awakeFromNib];
 }
@@ -49,9 +48,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-//    imageListToShow = [[ImagesDataSource singleton] objects];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -60,70 +56,46 @@
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     imageListToShow = [[ImagesDataSource singleton] objects];
     
-    customRows = nil;
-    if(_datasource == DataSourceInventory)
-    {
-        _btnShowAll.enabled = YES;
-        _btnShowAll.title = @"Reset";
-        _btnEdit.enabled = YES;
-        
-        customRows = [self readFromFile];
-        if(customRows.count == 0)
-        {
-            imageListToShow = [[ImagesDataSource singleton] objects];
-            customRows = [[NSMutableArray alloc] initWithCapacity:imageListToShow.count];
-            for (int i =0 ; i< imageListToShow.count; i++)
-            {
-                [customRows addObject:[NSNumber numberWithInt:i]];
-            }
-            [self writeToFile];
-        }
-        [self.tableView reloadData];
-    }
     [self.navigationItem setLeftBarButtonItem:nil];
-    [self.navigationItem setLeftBarButtonItems:nil];
-    
-   
-    MainTableViewCell *cell = (MainTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
 
-    self.detailViewController.image = cell.image;
+    if(_datasource == DataSourceCustom)
+    {
+        self.navigationItem.hidesBackButton = NO;
+        self.title = @"Custom";
+    }
+    else if(_datasource == DataSourceInventory)
+    {
+        self.navigationItem.hidesBackButton = YES;
+        self.title = @"Inventory";
+    }
+    else if(_datasource == DataSourceOffline)
+    {
+        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(btnEditTapped:)];
+        [self.navigationItem setLeftBarButtonItem:editButton];
+        
+        _btnShowAll.enabled = NO;
+        _btnEdit.enabled = YES;
+        self.title = @"Offline Images";
+    }
+
+
+   
+//    MainTableViewCell *cell = (MainTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+
+//    self.detailViewController.image = cell.image;
     [self.detailViewController updateImage];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:20.0];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.0];
-    label.textAlignment = NSTextAlignmentCenter;
-    // ^-Use UITextAlignmentCenter for older SDKs.
-    label.textColor = [UIColor whiteColor]; // change this color
-    self.navigationItem.titleView = label;
-    label.text = NSLocalizedString(@"", @"");
-    [label sizeToFit];
-    
+
     UIImage *barImage = [UIImage imageWithImage:[UIImage imageNamed:@"Topbar.png"] scaledToSize:CGSizeMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height+20)];
     
     [self.navigationController.navigationBar setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHide) name:UIKeyboardDidHideNotification object:nil];
     
-    if(_datasource == DataSourceCustom)
-    {
-        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
-//        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(btnEditTapped:)];
-        [self.navigationItem setLeftBarButtonItems:@[backButton]];
-    }
-    else
-    {
-        
-        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(btnEditTapped:)];
-        [self.navigationItem setLeftBarButtonItem:editButton];
-    }
-
 }
 
 
@@ -160,16 +132,7 @@
 {
     MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainTableViewCell" forIndexPath:indexPath];
 
-    ImageData *image;
-    if(!isSearchMode && _datasource == DataSourceInventory)
-    {
-        NSNumber *indexFromCustom = (NSNumber*)[customRows objectAtIndex:indexPath.row];
-        image = [imageListToShow objectAtIndex:[indexFromCustom integerValue]];
-    }
-    else
-    {
-        image = [imageListToShow objectAtIndex:indexPath.row];
-    }
+    ImageData *image = [imageListToShow objectAtIndex:indexPath.row];
 
     cell.imagePreview.imageURL = image.imageURLs[0];
     if (image.name) {
@@ -222,8 +185,7 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    [customRows exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
-    [self writeToFile];
+//    [customRows exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -232,50 +194,6 @@
 
 - (BOOL)tableView:(UITableView *)tableview shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
-}
-
-
--(void) writeToFile
-{
-    /*
-    NSString *fileName;
-    if(_isCustom)
-    {
-        fileName = @"CustomImages.plist";
-    }
-    else
-    {
-        fileName = @"InventoryImages.plist";
-    }
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *customPlistPath =  [documentsDirectory stringByAppendingPathComponent:fileName];
-    
-    [customRows writeToFile:customPlistPath atomically:NO];
-     */
-}
-
-- (NSMutableArray*)readFromFile
-{
-    /*
-    NSString *fileName;
-    if(_isCustom)
-    {
-        fileName = @"CustomImages.plist";
-    }
-    else
-    {
-        fileName = @"InventoryImages.plist";
-    }
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *customPlistPath =  [documentsDirectory stringByAppendingPathComponent:fileName];
-
-    return [NSMutableArray arrayWithContentsOfFile:customPlistPath];
-     */
-    return nil;
 }
 
 #pragma -mark Segue
@@ -307,25 +225,17 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Floorplay" message:@"No Items found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
-    else{
+    else
+    {
         imageListToShow = itemsInSelectedRange;
     }
     [self.tableView reloadData];
-//    if(_isCustom)
-//    {
-        _btnShowAll.title = @"Reset";
-//    }
-//    else
-//    {
-//        _btnShowAll.enabled = YES;
-//    }
+
     isSearchMode = YES;
     _btnEdit.enabled = NO;
     isEditing = NO;
     [[self tableView] setEditing:NO animated:YES];
     _btnEdit.title = @"Edit";
-    
-    _btnShowAll.title = @"Show All";
 }
 
 #pragma -mark UISearchBarDelegate
@@ -358,14 +268,6 @@
     {
         imageListToShow = [[ImagesDataSource singleton] searchImagesWithDetail:searchText];
         [self.tableView reloadData];
-//        if(_isCustom)
-//        {
-            _btnShowAll.title = @"Reset";
-//        }
-//        else
-//        {
-//            _btnShowAll.enabled = YES;
-//        }
     }
 }
 
@@ -415,28 +317,13 @@
 }
 - (IBAction)ShowAllTapped:(id)sender
 {
-    if([_btnShowAll.title isEqualToString:@"Reset"])
-    {
-        [[[UIAlertView alloc] initWithTitle:@"Reset" message:@"Are you sure? All your changes will be lost." delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] show];
-    }
-    else
-    {
-        imageListToShow = [[ImagesDataSource singleton] objects];
-        [self.tableView reloadData];
-        [self.searchBar resignFirstResponder];
-        [self.searchBar setText:nil];
-//        if(_isCustom)
-//        {
-            _btnShowAll.title = @"Reset";
-//        }
-//        else
-//        {
-//            _btnShowAll.enabled = NO;
-//        }
-    }
+    imageListToShow = [[ImagesDataSource singleton] objects];
+    [self.tableView reloadData];
+    [self.searchBar resignFirstResponder];
+    [self.searchBar setText:nil];
+    
     isSearchMode = NO;
-//    if(_isCustom)
-        _btnEdit.enabled = YES;
+    _btnEdit.enabled = YES;
 }
 
 - (IBAction)btnEditTapped:(UIBarButtonItem* )sender
@@ -452,25 +339,6 @@
         isEditing = YES;
         [[self tableView] setEditing:YES animated:YES];
         sender.title = @"Done";
-    }
-}
-
--(void)resetPlist
-{
-    [customRows removeAllObjects];
-    for (int i =0 ; i< imageListToShow.count; i++)
-    {
-        [customRows addObject:[NSNumber numberWithInt:i]];
-    }
-    [self writeToFile];
-    [self.tableView reloadData];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1)
-    {
-        [self resetPlist];
     }
 }
 

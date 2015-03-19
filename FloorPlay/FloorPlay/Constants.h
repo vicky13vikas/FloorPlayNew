@@ -20,13 +20,7 @@
 #define SERVER_URL_FOR_FILE @"http://floorplayrugs.com/ImageSrc/data/images/"
 
 
-
-
 #define RELATIVE_IMAGES_COUNT 4
-
-#define SAVED_JSON_FILE @"JsonData.plist"
-#define SAVED_JSON_PRODUCT_MASTER @"ProductMaster.plist"
-#define SAVED_BG_IMAGES_JSON_FILE @"BGImagesJsonData.plist"
 
 #define kCategories @[@"By Color", @"By Size", @"By Pattern", @"By Material", @"By Price"]
 
@@ -36,7 +30,8 @@
 typedef NS_ENUM(NSInteger, DataSource)
 {
     DataSourceInventory,
-    DataSourceCustom
+    DataSourceCustom,
+    DataSourceOffline
 };
 
 typedef enum {

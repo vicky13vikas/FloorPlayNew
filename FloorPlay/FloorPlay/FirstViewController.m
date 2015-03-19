@@ -71,17 +71,8 @@
         _master = (MasterViewController*)[[_splitViewController.viewControllers objectAtIndex:0] topViewController];
     }
         
-    if(_dataSource == DataSourceCustom)
+    if(_dataSource != DataSourceCustom)
     {
-        self.master.datasource = DataSourceCustom;
-        [self dismissViewControllerAnimated:NO completion:^{
-            [[_splitViewController.viewControllers objectAtIndex:0] popToRootViewControllerAnimated:NO];
-        }];
-        
-    }
-    else
-    {
-        self.master.datasource = DataSourceInventory;
         [self dismissViewControllerAnimated:NO completion:^{
             if([[[_splitViewController.viewControllers objectAtIndex:0] viewControllers] count] == 1)
             {
@@ -89,13 +80,28 @@
             }
         }];
     }
+    else
+    {
+        [self dismissViewControllerAnimated:NO completion:^{
+            [[_splitViewController.viewControllers objectAtIndex:0] popToRootViewControllerAnimated:NO];
+        }];
+    }
+    self.master.datasource = _dataSource;
 }
 
 - (IBAction)offlineTapped:(id)sender
 {
+    _dataSource = DataSourceOffline;
     self.imagesList = [[FBCoreDataManager sharedDataManager] getAllOfflineImages];
-    [[ImagesDataSource singleton] cacheData:self.imagesList];
-    [self dateSourceSelected:nil];
+    if (self.imagesList.count > 0)
+    {
+        [[ImagesDataSource singleton] cacheData:self.imagesList];
+        [self dateSourceSelected:nil];
+    }
+    else
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Oops!!" message:@"There are no images saved for offline." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
 }
 
 - (IBAction)customTapped:(id)sender
@@ -138,7 +144,7 @@
          
      }];
     
-    [self showLoadingScreenWithMessage:@"Downloading..."];
+    [self showLoadingScreenWithMessage:@"Loading..."];
 }
 
 #pragma -mark Orientaion

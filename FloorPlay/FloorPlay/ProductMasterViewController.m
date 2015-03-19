@@ -11,7 +11,7 @@
 #import "MasterViewController.h"
 #import "ImagesDataSource.h"
 
-#define HEADER_HEIGHT 50
+#define HEADER_HEIGHT 30
 
 @interface ProductMasterViewController ()
 {
@@ -39,7 +39,8 @@
     MasterViewController *vc= [self.storyboard instantiateViewControllerWithIdentifier:@"MasterViewController"];
     [self.navigationController pushViewController:vc animated:NO];
     
-    self.title = @"PRODUCTS";
+    self.title = @"Products";
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -72,12 +73,12 @@
     UIView * header = nil;
     
     header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), HEADER_HEIGHT)];
-    [header setBackgroundColor:[UIColor colorWithRed:30.0/255.0 green:35.0/255.0 blue:54.0/255.0 alpha:1]];
+    [header setBackgroundColor:[UIColor lightGrayColor]];
     
     UILabel * headerTitle = [[UILabel alloc] init];
     [headerTitle setTextAlignment:NSTextAlignmentCenter];
     [headerTitle setText:NSLocalizedString(@"SELECT ANY CUSTOM PRODUCT", nil)];
-    [headerTitle setTextColor:[UIColor whiteColor]];
+    [headerTitle setTextColor:[UIColor blackColor]];
     [headerTitle setFont:[UIFont systemFontOfSize:12]];
     [header addSubview:headerTitle];
     [headerTitle setFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), HEADER_HEIGHT)];

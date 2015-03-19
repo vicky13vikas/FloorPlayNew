@@ -51,7 +51,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     _firstViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"FirstViewController"];
     _firstViewController.master = (MasterViewController*)[[[self.splitViewController.viewControllers objectAtIndex:0] viewControllers] objectAtIndex:1];
@@ -72,23 +71,11 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    isAppearFirstTime = NO;
+    self.image = [[[ImagesDataSource singleton] objects] firstObject];
     
-//    if(isAppearFirstTime)
-//    {
-        isAppearFirstTime = NO;
-        self.image = [[[ImagesDataSource singleton] objects] firstObject];
-//    }
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:20.0];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.0];
-    label.textAlignment = NSTextAlignmentCenter;
-    // ^-Use UITextAlignmentCenter for older SDKs.
-    label.textColor = [UIColor whiteColor]; // change this color
-    self.navigationItem.titleView = label;
-    label.text = NSLocalizedString(@"Floor Play", @"");
-    [label sizeToFit];
+    self.title = NSLocalizedString(@"Floor Play", @"");
     
     UIImage *barImage = [UIImage imageWithImage:[UIImage imageNamed:@"Topbar.png"] scaledToSize:CGSizeMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height+20)];
     
@@ -99,11 +86,6 @@
     [self setDescription];
     
     _filmStripCollection.allowsSelection = YES;
-    
-//    _imageView.layer.shadowColor = [UIColor blackColor].CGColor;
-//    _imageView.layer.shadowOffset = CGSizeMake(0, 0);
-//    _imageView.layer.shadowOpacity = 1.0;
-//    _imageView.layer.shadowRadius = 3.0;
     
     if(selectedIndexPath.row <= 0)
     {

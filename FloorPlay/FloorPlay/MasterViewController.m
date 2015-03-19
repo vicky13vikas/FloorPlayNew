@@ -78,11 +78,8 @@
         self.title = @"Offline Images";
     }
 
+    [self.tableView reloadData];
 
-   
-//    MainTableViewCell *cell = (MainTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-
-//    self.detailViewController.image = cell.image;
     [self.detailViewController updateImage];
 }
 
@@ -231,11 +228,11 @@
     }
     [self.tableView reloadData];
 
+    _btnShowAll.enabled = YES;
     isSearchMode = YES;
     _btnEdit.enabled = NO;
     isEditing = NO;
     [[self tableView] setEditing:NO animated:YES];
-    _btnEdit.title = @"Edit";
 }
 
 #pragma -mark UISearchBarDelegate
@@ -267,6 +264,7 @@
     else
     {
         imageListToShow = [[ImagesDataSource singleton] searchImagesWithDetail:searchText];
+        _btnShowAll.enabled = YES;
         [self.tableView reloadData];
     }
 }
@@ -324,6 +322,7 @@
     
     isSearchMode = NO;
     _btnEdit.enabled = YES;
+    _btnShowAll.enabled = NO;
 }
 
 - (IBAction)btnEditTapped:(UIBarButtonItem* )sender

@@ -38,6 +38,7 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ySf-yi-rk0" customClass="AsyncImageView">
                                         <rect key="frame" x="0.0" y="0.0" width="663" height="530"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
                                 </subviews>
                                 <connections>
@@ -158,7 +159,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveOfflineTapped:" destination="4" eventType="touchUpInside" id="C2O-da-dOo"/>
+                                    <action selector="saveOfflineTapped:" destination="4" eventType="touchUpInside" id="AeK-zb-X71"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -189,6 +190,7 @@
                     <connections>
                         <outlet property="btnNext" destination="0D7-tz-7es" id="Hd6-6X-Rwu"/>
                         <outlet property="btnPrevious" destination="zM4-7R-zpj" id="xlD-Y1-nXP"/>
+                        <outlet property="btnSaveDelete" destination="bbZ-Cl-M3c" id="PKf-Ge-qqM"/>
                         <outlet property="detailTextView" destination="Q0L-Hq-HZK" id="ckH-Ta-8r7"/>
                         <outlet property="filmStripCollection" destination="shK-u7-nis" id="5F1-lY-5UP"/>
                         <outlet property="imageView" destination="ySf-yi-rk0" id="den-OH-1iY"/>

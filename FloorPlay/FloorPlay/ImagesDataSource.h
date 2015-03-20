@@ -39,5 +39,6 @@
 -(NSArray*)getItemsInPriceRange:(NSString*)selectedString;
 
 -(NSArray*)searchImagesWithDetail:(NSString*)selectedString;
+- (ImageData*)getNextSelectedImage:(ImageData*)imageData;
 
 @end

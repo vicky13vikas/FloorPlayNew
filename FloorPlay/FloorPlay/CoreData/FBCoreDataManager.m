@@ -240,4 +240,22 @@
     [self.managedObjectContext save:nil];
 }
 
+-(BOOL)deleteImage:(ImageData *)imageData
+{
+    NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"FPImageData"];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
+    
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"identfier == %@",
+                            [NSNumber numberWithInteger:[imageData.identfier integerValue]]];
+    
+    fetchRequest.predicate=predicate;
+    NSArray *list = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    for (FPImageData *image in list)
+    {
+        [self.managedObjectContext deleteObject:image];
+    }
+    
+    return [self.managedObjectContext save:nil];
+}
+
 @end

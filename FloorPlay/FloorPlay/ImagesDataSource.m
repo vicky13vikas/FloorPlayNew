@@ -319,4 +319,23 @@
     return result;
 }
 
+- (ImageData*)getNextSelectedImage:(ImageData*)imageData
+{
+    NSInteger currentIndex = [_objects indexOfObject:imageData];
+    ImageData *nextImage, *previousImage;
+    
+    if(currentIndex < _objects.count - 1)
+         nextImage = [_objects objectAtIndex:currentIndex + 1];
+    
+    if(currentIndex > 0)
+         previousImage = [_objects objectAtIndex:currentIndex - 1];
+    
+    if(nextImage)
+        return nextImage;
+    else if (previousImage)
+        return previousImage;
+    
+    return nil;
+}
+
 @end

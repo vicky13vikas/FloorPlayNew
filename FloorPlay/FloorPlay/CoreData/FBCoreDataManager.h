@@ -26,6 +26,8 @@ typedef void (^SaveCompletion) (bool success);
 
 - (void)saveImageData:(ImageData *)imageData withCompletionHandler:(SaveCompletion)completion;
 
+- (BOOL)deleteImage:(ImageData *)imageData;
+
 - (NSArray *)getAllOfflineImages;
 
 - (void)swapImageAtIndex:(NSUInteger)source withImageAtIndex:(NSUInteger)dest;

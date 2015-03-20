@@ -18,6 +18,7 @@
 #import <AsyncImageView/AsyncImageView.h>
 #import "FBCoreDataManager.h"
 #import "UIViewControllerCategories.h"
+#import "FBCoreDataManager.h"
 
 @interface DetailViewController () <selectCategoryDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate>
 {
@@ -32,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *filmStripCollection;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
 @property (weak, nonatomic) IBOutlet UIButton *btnPrevious;
+@property (weak, nonatomic) IBOutlet UIButton *btnSaveDelete;
 
 @property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 - (IBAction)fullScreentapped:(id)sender;
@@ -67,6 +69,16 @@
     isAppearFirstTime = YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_firstViewController.master.datasource == DataSourceOffline)
+    {
+        [_btnSaveDelete setTitle:@"Delete Offline" forState:UIControlStateNormal];
+    }
+    else
+        [_btnSaveDelete setTitle:@"Save Offline" forState:UIControlStateNormal];
+}
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -371,11 +383,32 @@
 
 - (IBAction)saveOfflineTapped:(id)sender
 {
-    [self showLoadingScreenWithMessage:@"Saving Images..."];
-    [[FBCoreDataManager sharedDataManager] saveImageData:self.image withCompletionHandler:^(bool success) {
-        if(success)
-            [self hideLoadingScreen];
-    }];
+    if(_firstViewController.master.datasource == DataSourceOffline)
+    {
+        [self showLoadingScreenWithMessage:@"Deleting..."];
+        [[FBCoreDataManager sharedDataManager] deleteImage:self.image];
+       
+        self.image = [[ImagesDataSource singleton] getNextSelectedImage:self.image];
+
+        [[[UIAlertView alloc] initWithTitle:@"Oops!!" message:@"There are no images saved for offline. Go to home to save Offline." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+
+
+        [self updateImage];
+
+        [[ImagesDataSource singleton] cacheData:[[FBCoreDataManager sharedDataManager]
+                                                 getAllOfflineImages]];
+
+        [self.firstViewController.master.tableView reloadData];
+        [self hideLoadingScreen];
+    }
+    else
+    {
+        [self showLoadingScreenWithMessage:@"Saving Images..."];
+        [[FBCoreDataManager sharedDataManager] saveImageData:self.image withCompletionHandler:^(bool success) {
+            if(success)
+                [self hideLoadingScreen];
+        }];
+    }
 }
 
 

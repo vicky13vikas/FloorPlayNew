@@ -221,9 +221,9 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Inventory" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONQ-3y-rlD">
-                                <rect key="frame" x="125" y="570" width="253" height="80"/>
+                                <rect key="frame" x="70" y="570" width="250" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="253" id="1Sz-kl-SmI"/>
+                                    <constraint firstAttribute="width" constant="250" id="1Sz-kl-SmI"/>
                                     <constraint firstAttribute="height" constant="80" id="TiS-Re-txL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
@@ -239,9 +239,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Custom" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3U-WW-P2h">
-                                <rect key="frame" x="646" y="570" width="253" height="80"/>
+                                <rect key="frame" x="387" y="570" width="250" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="253" id="xKv-Ck-8jG"/>
+                                    <constraint firstAttribute="width" constant="250" id="xKv-Ck-8jG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <state key="normal" title="Custom" backgroundImage="btn_Signin.png">
@@ -264,9 +264,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCt-Rq-rni">
-                                <rect key="frame" x="912" y="714" width="92" height="34"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCt-Rq-rni">
+                                <rect key="frame" x="704" y="570" width="250" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="1QY-PG-wXo"/>
+                                    <constraint firstAttribute="width" constant="250" id="iS0-sw-w4N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <state key="normal" title="Offline" backgroundImage="btn_Signin.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -278,11 +282,13 @@
                         <color key="backgroundColor" red="0.90009341030000001" green="0.90009341030000001" blue="0.90009341030000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ONQ-3y-rlD" secondAttribute="bottom" constant="118" id="5Gk-XX-yM9"/>
-                            <constraint firstItem="ONQ-3y-rlD" firstAttribute="leading" secondItem="Nso-oE-42I" secondAttribute="leading" constant="125" id="BCp-hZ-ew4"/>
+                            <constraint firstItem="ONQ-3y-rlD" firstAttribute="leading" secondItem="Nso-oE-42I" secondAttribute="leading" constant="70" id="BCp-hZ-ew4"/>
                             <constraint firstItem="y3U-WW-P2h" firstAttribute="bottom" secondItem="ONQ-3y-rlD" secondAttribute="bottom" id="Eql-dd-O8l"/>
                             <constraint firstItem="y3U-WW-P2h" firstAttribute="top" secondItem="ONQ-3y-rlD" secondAttribute="top" id="LGu-J2-sWs"/>
+                            <constraint firstAttribute="trailing" secondItem="CCt-Rq-rni" secondAttribute="trailing" constant="70" id="SVq-sk-yT7"/>
                             <constraint firstItem="wOx-pY-n4W" firstAttribute="top" secondItem="Nso-oE-42I" secondAttribute="top" constant="86" id="Whh-cs-4qp"/>
-                            <constraint firstAttribute="trailing" secondItem="y3U-WW-P2h" secondAttribute="trailing" constant="125" id="elz-pw-MYW"/>
+                            <constraint firstItem="ETL-yO-Wo8" firstAttribute="top" secondItem="CCt-Rq-rni" secondAttribute="bottom" constant="118" id="WiJ-He-GN7"/>
+                            <constraint firstAttribute="trailing" secondItem="y3U-WW-P2h" secondAttribute="trailing" constant="387" id="elz-pw-MYW"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>

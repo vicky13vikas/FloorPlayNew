@@ -15,10 +15,11 @@
 #import "SelectedCategoryViewController.h"
 #import "MWPhotoBrowser.h"
 #import "AGQuadControlViewController.h"
-#import <AsyncImageView/AsyncImageView.h>
 #import "FBCoreDataManager.h"
 #import "UIViewControllerCategories.h"
 #import "FBCoreDataManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @interface DetailViewController () <selectCategoryDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate>
 {
@@ -29,7 +30,7 @@
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (strong, nonatomic) UIPopoverController *popOverController;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet AsyncImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UICollectionView *filmStripCollection;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
 @property (weak, nonatomic) IBOutlet UIButton *btnPrevious;
@@ -65,7 +66,6 @@
     doubleTap.delegate = self;
     [self.scrollView addGestureRecognizer:doubleTap];
     
-    _imageView.crossfadeDuration = 0.0;
     isAppearFirstTime = YES;
 }
 
@@ -93,7 +93,9 @@
     
     [self.navigationController.navigationBar setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     
-    self.imageView.imageURL = _image.imageURLs[0];
+//    self.imageView.imageURL = _image.imageURLs[0];
+    [_imageView setImageWithURL:_image.imageURLs[0]];
+
     [self.filmStripCollection reloadData];
     [self setDescription];
     
@@ -180,7 +182,8 @@
 
 -(void)updateImage
 {
-    self.imageView.imageURL = self.image.imageURLs[0];
+//    self.imageView.imageURL = self.image.imageURLs[0];
+    [self.imageView setImageWithURL:self.image.imageURLs[0]];
     selectedIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 
     [self.filmStripCollection reloadData];
@@ -213,12 +216,13 @@
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"flimStripCell" forIndexPath:indexPath];
-    AsyncImageView * imageView = (AsyncImageView*)[cell viewWithTag:444];
+    UIImageView * imageView = (UIImageView*)[cell viewWithTag:444];
     imageView.image = nil;
-    imageView.imageURL = nil;
-    imageView.crossfadeDuration = 0.0;
+//    imageView.imageURL = nil;
     
-    imageView.imageURL = _image.imageURLs[indexPath.row];
+//    imageView.imageURL = _image.imageURLs[indexPath.row];
+    
+    [imageView setImageWithURL:_image.imageURLs[indexPath.row]];
     
     cell.backgroundColor = [UIColor whiteColor];
 
@@ -227,7 +231,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-    self.imageView.imageURL = _image.imageURLs[indexPath.row];
+//    self.imageView.imageURL = _image.imageURLs[indexPath.row];
+    [self.imageView setImageWithURL:_image.imageURLs[indexPath.row]];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor blueColor];
     self.scrollView.zoomScale = 1.0;
@@ -329,7 +334,9 @@
     
     selectedIndexPath = indexPath;
 
-    self.imageView.imageURL = _image.imageURLs[indexPath.row];
+//    self.imageView.imageURL = _image.imageURLs[indexPath.row];
+    [self.imageView setImageWithURL:_image.imageURLs[indexPath.row]];
+    
     if(selectedIndexPath.row <= 0)
     {
         [sender setEnabled:NO];
@@ -354,7 +361,8 @@
     
     selectedIndexPath = indexPath;
     
-    self.imageView.imageURL = _image.imageURLs[indexPath.row];
+//    self.imageView.imageURL = _image.imageURLs[indexPath.row];
+    [self.imageView setImageWithURL:_image.imageURLs[indexPath.row]];
     if(selectedIndexPath.row >= self.image.imageURLs.count - 1)
     {
         [sender setEnabled:NO];

@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ImageData.h"
-#import <AsyncImageView/AsyncImageView.h>
 
 @interface MainTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
-@property (weak, nonatomic) IBOutlet AsyncImageView *imagePreview;
+@property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
 
 @end

@@ -30,15 +30,14 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [_imagePreview setShowActivityIndicator:YES];
-    [_imagePreview setCrossfadeDuration:0];
+ //   [_imagePreview setShowActivityIndicator:YES];
+  //  [_imagePreview setCrossfadeDuration:0];
 }
 
 -(void)prepareForReuse
 {
     [super prepareForReuse];
     self.imagePreview.image = nil;
-    self.imagePreview.imageURL = nil;
 }
 
 @end

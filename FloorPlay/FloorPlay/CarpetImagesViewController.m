@@ -9,7 +9,8 @@
 #import "CarpetImagesViewController.h"
 #import "ImagesDataSource.h"
 #import "ImageData.h"
-#import <AsyncImageView/AsyncImageView.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @interface CarpetImagesViewController ()
 {
@@ -65,9 +66,11 @@
     NSString *identifier = @"collectionViewCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     //    cell.backgroundColor = [UIColor whiteColor];
-    AsyncImageView *imageView = (AsyncImageView*)[cell viewWithTag:555];
-    imageView.imageURL = carpetImageURLs[indexPath.row];
+    UIImageView *imageView = (UIImageView*)[cell viewWithTag:555];
+
+    //    imageView.imageURL = carpetImageURLs[indexPath.row];
     
+    [imageView setImageWithURL:carpetImageURLs[indexPath.row]];
     return cell;
 }
 
@@ -75,7 +78,7 @@
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     //    cell.backgroundColor = [UIColor blueColor];
-    UIImage *selectedImage = [(AsyncImageView*)[cell viewWithTag:555] image];
+    UIImage *selectedImage = [(UIImageView*)[cell viewWithTag:555] image];
     
     [_delegate carpetImageDidChange:selectedImage];
 }

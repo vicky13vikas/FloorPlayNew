@@ -4,7 +4,6 @@
 target "FloorPlay" do
 
 pod 'AFNetworking', '2.2.1'
-pod 'AsyncImageView'
 pod 'AGGeometryKit', '1.0.2'
 pod 'MWPhotoBrowser', '1.4.0'
 

@@ -7,7 +7,6 @@
 //
 
 #import "FBCoreDataManager.h"
-#import <AsyncImageView/AsyncImageView.h>
 #import <AFHTTPRequestOperation.h>
 
 @implementation FBCoreDataManager

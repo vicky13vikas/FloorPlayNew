@@ -12,6 +12,8 @@
 #import "ImagesDataSource.h"
 #import "MainTableViewCell.h"
 #import "FBCoreDataManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @interface MasterViewController () <UISearchBarDelegate>
 {
@@ -134,7 +136,10 @@
 
     ImageData *image = [imageListToShow objectAtIndex:indexPath.row];
 
-    cell.imagePreview.imageURL = image.imageURLs[0];
+//    cell.imagePreview.imageURL = image.imageURLs[0];
+    [cell.imagePreview setImageWithURL:image.imageURLs[0] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+    }];
     if (image.name) {
         cell.lblName.text = image.name;
     }

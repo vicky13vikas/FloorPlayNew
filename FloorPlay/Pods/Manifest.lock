@@ -23,7 +23,6 @@ PODS:
   - AGGeometryKit/Core (1.0.2)
   - AGGeometryKit/Default (1.0.2):
     - AGGeometryKit/Core
-  - AsyncImageView (1.5.1)
   - DACircularProgress (2.3.1)
   - MBProgressHUD (0.9.1)
   - MWPhotoBrowser (1.4.0):
@@ -39,13 +38,11 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.2.1)
   - AGGeometryKit (= 1.0.2)
-  - AsyncImageView
   - MWPhotoBrowser (= 1.4.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 59a0b8e9ecd4e194d64b4967232cd2cc83490113
   AGGeometryKit: 56a1da66cb14b189f25e579aed04be81eb267449
-  AsyncImageView: db9433939160710b34a5c249479e03af2a2121b0
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MWPhotoBrowser: 02c13159c8cc89740a53a2e59b368593b2495715

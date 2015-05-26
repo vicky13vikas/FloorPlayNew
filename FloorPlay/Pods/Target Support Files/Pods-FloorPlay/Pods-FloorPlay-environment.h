@@ -66,12 +66,6 @@
 #define COCOAPODS_VERSION_MINOR_AGGeometryKit_Default 0
 #define COCOAPODS_VERSION_PATCH_AGGeometryKit_Default 2
 
-// AsyncImageView
-#define COCOAPODS_POD_AVAILABLE_AsyncImageView
-#define COCOAPODS_VERSION_MAJOR_AsyncImageView 1
-#define COCOAPODS_VERSION_MINOR_AsyncImageView 5
-#define COCOAPODS_VERSION_PATCH_AsyncImageView 1
-
 // DACircularProgress
 #define COCOAPODS_POD_AVAILABLE_DACircularProgress
 #define COCOAPODS_VERSION_MAJOR_DACircularProgress 2

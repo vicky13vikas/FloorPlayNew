@@ -67,6 +67,7 @@
 		4E6962C51AB8AC3300F796CC /* FBImageData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962C31AB8AC3300F796CC /* FBImageData.xcdatamodeld */; };
 		4E6962CF1AB8B12400F796CC /* FBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */; };
 		4ED515A21ABB5ECA00EBC8BC /* FPImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED515A11ABB5ECA00EBC8BC /* FPImageData.m */; };
+		4ED8E26E1B0E66D300D31E8E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ED8E26D1B0E66D300D31E8E /* Images.xcassets */; };
 		613D0C985886468185D016EB /* libPods-FloorPlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 107E4B76031F406EAD671FAC /* libPods-FloorPlay.a */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +175,7 @@
 		4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBCoreDataManager.m; path = CoreData/FBCoreDataManager.m; sourceTree = "<group>"; };
 		4ED515A01ABB5ECA00EBC8BC /* FPImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPImageData.h; sourceTree = "<group>"; };
 		4ED515A11ABB5ECA00EBC8BC /* FPImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPImageData.m; sourceTree = "<group>"; };
+		4ED8E26D1B0E66D300D31E8E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E4F53C9FEA3B32093A3DA3A4 /* Pods-FloorPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloorPlay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FloorPlay/Pods-FloorPlay.debug.xcconfig"; sourceTree = "<group>"; };
 		E945C44CC5D8C9F0777B114B /* Pods-FloorPlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloorPlay.release.xcconfig"; path = "Pods/Target Support Files/Pods-FloorPlay/Pods-FloorPlay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -372,6 +374,7 @@
 				099FBA861967FB5E002D3688 /* Topbar.png */,
 				099FBA871967FB5E002D3688 /* btn_Signin.png */,
 				099FBA881967FB5E002D3688 /* logo.bmp */,
+				4ED8E26D1B0E66D300D31E8E /* Images.xcassets */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -457,6 +460,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Vikas Kumar";
 				TargetAttributes = {
+					09022ED51967E998009A8D7E = {
+						DevelopmentTeam = 76RP29N5SR;
+					};
 					09022EF91967E999009A8D7E = {
 						TestTargetID = 09022ED51967E998009A8D7E;
 					};
@@ -487,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09022F3A1967F1BE009A8D7E /* MainStoryboard_iPad.storyboard in Resources */,
+				4ED8E26E1B0E66D300D31E8E /* Images.xcassets in Resources */,
 				099FBA9A1967FB5E002D3688 /* btn_Signin.png in Resources */,
 				099FBA901967FB5E002D3688 /* sampleimg.jpg in Resources */,
 				099FBA911967FB5E002D3688 /* tabbar_icon.png in Resources */,
@@ -706,8 +713,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4F53C9FEA3B32093A3DA3A4 /* Pods-FloorPlay.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FloorPlay/FloorPlay-Prefix.pch";
 				INFOPLIST_FILE = "FloorPlay/FloorPlay-Info.plist";
@@ -720,8 +726,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E945C44CC5D8C9F0777B114B /* Pods-FloorPlay.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FloorPlay/FloorPlay-Prefix.pch";
 				INFOPLIST_FILE = "FloorPlay/FloorPlay-Info.plist";

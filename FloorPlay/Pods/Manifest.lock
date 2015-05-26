@@ -24,8 +24,8 @@ PODS:
   - AGGeometryKit/Default (1.0.2):
     - AGGeometryKit/Core
   - AsyncImageView (1.5.1)
-  - DACircularProgress (2.2.0)
-  - MBProgressHUD (0.9)
+  - DACircularProgress (2.3.1)
+  - MBProgressHUD (0.9.1)
   - MWPhotoBrowser (1.4.0):
     - DACircularProgress
     - MBProgressHUD (~> 0.8)
@@ -43,13 +43,13 @@ DEPENDENCIES:
   - MWPhotoBrowser (= 1.4.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: 8dde8c8a6597ad95dac332a593c27e541bc87371
-  AGGeometryKit: e37f4fe1f9d522a6059a091898486d2a410a88e7
-  AsyncImageView: 388442ae8314a5c99de0d98040c2926826d31da7
-  DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
-  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  MWPhotoBrowser: 4efcdb9da34751f97992128a5356f3929d1af537
-  PSTCollectionView: d9f466e4554cc83260ca9bde7beb27f308e8fd76
-  SDWebImage: 571295c8acbb699505a0f68e54506147c3de9ea7
+  AFNetworking: 59a0b8e9ecd4e194d64b4967232cd2cc83490113
+  AGGeometryKit: 56a1da66cb14b189f25e579aed04be81eb267449
+  AsyncImageView: db9433939160710b34a5c249479e03af2a2121b0
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MWPhotoBrowser: 02c13159c8cc89740a53a2e59b368593b2495715
+  PSTCollectionView: 6749df92885353521f55279a7ce2b293762e2be4
+  SDWebImage: b7546bef8a1a7d7f4995b2e43f7644ac04ceb186
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.1

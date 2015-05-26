@@ -42,7 +42,7 @@ THE SOFTWARE.
 		<dict>
 			<key>FooterText</key>
 			<string>
-Author: Håvard Fossli &lt;hfossli@agens.no&gt;
+Author: H&#229;vard Fossli &lt;hfossli@agens.no&gt;
 
 Copyright (c) 2013 Agens AS (http://agens.no/)
 
@@ -129,7 +129,7 @@ THE SOFTWARE.</string>
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2013 Matej Bukovinski
+			<string>Copyright (c) 2009-2015 Matej Bukovinski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

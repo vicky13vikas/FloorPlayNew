@@ -64,6 +64,7 @@
 		099FBA9A1967FB5E002D3688 /* btn_Signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA871967FB5E002D3688 /* btn_Signin.png */; };
 		099FBA9B1967FB5E002D3688 /* logo.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 099FBA881967FB5E002D3688 /* logo.bmp */; };
 		099FBA9F19680919002D3688 /* FPAFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 099FBA9E19680919002D3688 /* FPAFNetworking.m */; };
+		4E6883051B1AC785006DED37 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6883041B1AC785006DED37 /* Launch Screen.xib */; };
 		4E6962C51AB8AC3300F796CC /* FBImageData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962C31AB8AC3300F796CC /* FBImageData.xcdatamodeld */; };
 		4E6962CF1AB8B12400F796CC /* FBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */; };
 		4ED515A21ABB5ECA00EBC8BC /* FPImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED515A11ABB5ECA00EBC8BC /* FPImageData.m */; };
@@ -170,6 +171,7 @@
 		099FBA9D19680919002D3688 /* FPAFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPAFNetworking.h; sourceTree = "<group>"; };
 		099FBA9E19680919002D3688 /* FPAFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPAFNetworking.m; sourceTree = "<group>"; };
 		107E4B76031F406EAD671FAC /* libPods-FloorPlay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FloorPlay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E6883041B1AC785006DED37 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		4E6962C41AB8AC3300F796CC /* FBImageData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FBImageData.xcdatamodel; sourceTree = "<group>"; };
 		4E6962CD1AB8B12400F796CC /* FBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBCoreDataManager.h; path = CoreData/FBCoreDataManager.h; sourceTree = "<group>"; };
 		4E6962CE1AB8B12400F796CC /* FBCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBCoreDataManager.m; path = CoreData/FBCoreDataManager.m; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				09022EE21967E998009A8D7E /* InfoPlist.strings */,
 				09022EE51967E998009A8D7E /* main.m */,
 				09022EE71967E998009A8D7E /* FloorPlay-Prefix.pch */,
+				4E6883041B1AC785006DED37 /* Launch Screen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				099FBA9A1967FB5E002D3688 /* btn_Signin.png in Resources */,
 				099FBA901967FB5E002D3688 /* sampleimg.jpg in Resources */,
 				099FBA911967FB5E002D3688 /* tabbar_icon.png in Resources */,
+				4E6883051B1AC785006DED37 /* Launch Screen.xib in Resources */,
 				099FBA8F1967FB5E002D3688 /* sampleimg_enhanced.jpg in Resources */,
 				09022F391967F1BE009A8D7E /* MainStoryboard_iPhone.storyboard in Resources */,
 				099FBA9B1967FB5E002D3688 /* logo.bmp in Resources */,
@@ -713,11 +717,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4F53C9FEA3B32093A3DA3A4 /* Pods-FloorPlay.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FloorPlay/FloorPlay-Prefix.pch";
 				INFOPLIST_FILE = "FloorPlay/FloorPlay-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -726,11 +732,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E945C44CC5D8C9F0777B114B /* Pods-FloorPlay.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FloorPlay/FloorPlay-Prefix.pch";
 				INFOPLIST_FILE = "FloorPlay/FloorPlay-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

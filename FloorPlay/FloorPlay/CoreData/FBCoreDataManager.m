@@ -8,6 +8,7 @@
 
 #import "FBCoreDataManager.h"
 #import <AFHTTPRequestOperation.h>
+#import <SDWebImage/SDWebImageDownloader.h>
 
 @implementation FBCoreDataManager
 
@@ -174,6 +175,36 @@
 }
 
 -(void)saveImageToDocuments:(ImageData*)imagedata
+{
+    
+    NSString *dataPath = [imagedata pathToSaveOffline];
+    if(!dataPath)
+    {
+        _saveCompletion(NO);
+    }
+    
+    SDWebImageDownloader *manager = [SDWebImageDownloader sharedDownloader];
+    
+    for(NSURL *imageURL in imagedata.imageURLs)
+    {
+        NSURL *url = imageURL;
+        NSString* constPath = [dataPath stringByAppendingPathComponent:[imageURL lastPathComponent]];
+        
+        [manager downloadImageWithURL:url options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            
+        } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+            
+            if(finished){
+                [UIImagePNGRepresentation(image) writeToFile:constPath atomically:YES];
+                _saveCompletion(YES);
+            }
+        }];
+    }
+    
+}
+
+
+-(void)saveImageToDocuments1:(ImageData*)imagedata
 {
     NSString *dataPath = [imagedata pathToSaveOffline];
     if(!dataPath)

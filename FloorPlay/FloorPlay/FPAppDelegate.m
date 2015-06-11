@@ -8,6 +8,7 @@
 
 #import "FPAppDelegate.h"
 #import <AFNetworking/AFNetworkReachabilityManager.h>
+#import <HockeySDK/HockeySDK.h>
 
 @implementation FPAppDelegate
 
@@ -32,6 +33,13 @@
              [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"No Internet Connection", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
          }
      }];
+    
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"74051a039aeeffecc6db301237c5a173"];
+    // Configure the SDK in here only!
+    [[BITHockeyManager sharedHockeyManager] setDebugLogEnabled: YES];
+
+    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation]; // This line is obsolete in the crash only build
 
     return YES;
 }

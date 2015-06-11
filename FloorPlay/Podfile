@@ -6,6 +6,7 @@ target "FloorPlay" do
 pod 'AFNetworking', '2.2.1'
 pod 'AGGeometryKit', '1.0.2'
 pod 'MWPhotoBrowser', '1.4.0'
+pod 'CBHockeyAppCrashReportUI-iOS', '~> 0.0'
 
 end
 

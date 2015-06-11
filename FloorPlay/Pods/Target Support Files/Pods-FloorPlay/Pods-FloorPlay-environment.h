@@ -66,11 +66,23 @@
 #define COCOAPODS_VERSION_MINOR_AGGeometryKit_Default 0
 #define COCOAPODS_VERSION_PATCH_AGGeometryKit_Default 2
 
+// CBHockeyAppCrashReportUI-iOS
+#define COCOAPODS_POD_AVAILABLE_CBHockeyAppCrashReportUI_iOS
+#define COCOAPODS_VERSION_MAJOR_CBHockeyAppCrashReportUI_iOS 0
+#define COCOAPODS_VERSION_MINOR_CBHockeyAppCrashReportUI_iOS 0
+#define COCOAPODS_VERSION_PATCH_CBHockeyAppCrashReportUI_iOS 3
+
 // DACircularProgress
 #define COCOAPODS_POD_AVAILABLE_DACircularProgress
 #define COCOAPODS_VERSION_MAJOR_DACircularProgress 2
 #define COCOAPODS_VERSION_MINOR_DACircularProgress 3
 #define COCOAPODS_VERSION_PATCH_DACircularProgress 1
+
+// HockeySDK
+#define COCOAPODS_POD_AVAILABLE_HockeySDK
+#define COCOAPODS_VERSION_MAJOR_HockeySDK 3
+#define COCOAPODS_VERSION_MINOR_HockeySDK 6
+#define COCOAPODS_VERSION_PATCH_HockeySDK 4
 
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD

@@ -1,0 +1,1 @@
+../../../CBHockeyAppCrashReportUI-iOS/Library/CBHockeyAppCrashReportTableViewController.h

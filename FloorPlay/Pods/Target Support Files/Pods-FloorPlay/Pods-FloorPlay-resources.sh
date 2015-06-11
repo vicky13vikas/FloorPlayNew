@@ -58,10 +58,30 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/Base.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/de.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/en.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/fi.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/fr.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/it.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/ja.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/nb.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/sv.lproj"
   install_resource "MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/HockeySDKResources.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/Base.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/de.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/en.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/fi.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/fr.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/it.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/ja.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/nb.lproj"
+  install_resource "CBHockeyAppCrashReportUI-iOS/Library/Resources/sv.lproj"
   install_resource "MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/HockeySDKResources.bundle"
 fi
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

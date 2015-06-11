@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "139272C63E61D8D14F7C0D77"
+               BlueprintIdentifier = "400992347616590BC7A91973"
                BuildableName = "libPods-FloorPlay.a"
                BlueprintName = "Pods-FloorPlay"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "48B5EFEFC65894B407561A0E"
+               BlueprintIdentifier = "6288E1F75E2BCEFE5224E437"
                BuildableName = "libPods-FloorPlay-AGGeometryKit.a"
                BlueprintName = "Pods-FloorPlay-AGGeometryKit"
                ReferencedContainer = "container:Pods.xcodeproj">
